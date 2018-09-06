@@ -15,7 +15,8 @@ import LocationContainer from '../../../containers/LocationContainer'
 class NewSpot extends Component {
   state = {
     isRecordSpotDataVisible: false,
-    isRecordSpotImagesVisible: false
+    isRecordSpotImagesVisible: false,
+    data: {}
   }
 
   constructor(props) {
@@ -23,46 +24,56 @@ class NewSpot extends Component {
 
     this.formDataWasSubmit = this.formDataWasSubmit.bind(this)
     this.recordSpotData = this.recordSpotData.bind(this)
-    this.imagesWasSubmit = this.imagesWasSubmit.bind(this)
+    this.wasImageSubmited = this.wasImageSubmited.bind(this)
   }
 
   recordSpotData() {
     Container.get('event').dispatch(EventType.CENTER_WAS_RECORDED)
 
     this.setState({
-      isRecordSpotImagesVisible: true
+      isRecordSpotDataVisible: true
     })
   }
 
-  imagesWasSubmit() {
-    this.setState({
-      isRecordSpotDataVisible: true,
-      isRecordSpotImagesVisible: false
-    })
+  wasImageSubmited(event) {
+    event.preventDefault()
+
+    const { data } = this.state
+    const { upload } = event.target
+
+    const [ file ] = upload.files
+
+
+    console.log(file)
+
+    // this.props.recordPossibleSpot(data)
   }
 
   formDataWasSubmit(event) {
     event.preventDefault()
 
+    this.setState({
+      isRecordSpotDataVisible: false,
+      isRecordSpotImagesVisible: true
+    })
+
     const {
       name,
       street,
       longboard,
-      free,
-      upload
+      free
     } = event.target
 
     const data = {
       name: name.value,
       hasFree: !!free.checked,
-      images: null,
       modalities: {
         street: street.checked,
         longboard: longboard.checked,
       }
     }
 
-    this.props.recordPossibleSpot(data)
+    this.setState({ data })
   }
 
   render() {
@@ -73,7 +84,7 @@ class NewSpot extends Component {
 
     return (
       <div className="new-spot">
-        {isRecordSpotImagesVisible && <RecordSpotImages onClick={this.imagesWasSubmit} />}
+        {isRecordSpotImagesVisible && <RecordSpotImages onSubmit={this.wasImageSubmited} />}
         {isRecordSpotDataVisible && <RecordSpotData onSubmit={this.formDataWasSubmit} />}
 
         <i className="icon--marker new-spot__marker" />
@@ -85,20 +96,18 @@ class NewSpot extends Component {
           className="new-spot__button"
           text="Confirmar essa posição" />
 
-        <LocationContainer
-          event={this.event}
-          className="new-spot__location" />
+        <LocationContainer event={this.event} className="new-spot__location" />
       </div>
     )
   }
 }
 
 const mapHandlers = ({
-  recordPossibleSpot: props => data => {
-    return props.firebase.push('analyze', {
+  recordPossibleSpot: ({ firebase, spot, auth }) => data => {
+    return firebase.push('analyze', {
       type: 'spots',
-      location: props.spot,
-      uid: props.auth.id,
+      location: spot,
+      uid: auth.id,
       data
     })
   }

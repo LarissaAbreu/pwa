@@ -8,38 +8,20 @@ import Checkbox from '../../../components/Checkbox'
 const RecordSpotData = ({ onSubmit }) => (
   <div className="new-spot__content">
     <div className="new-spot__container">
-      <h1 className="new-spot__title">Adicione as informações do pico</h1>
+      <h1 className="new-spot__title">Ei, adicione as informações do seu pico</h1>
 
       <form className="new-spot__form" onSubmit={onSubmit}>
-        <Input
-          required
-          id="name"
-          label="Nome do pico" />
+        <Input required id="name" label="Nome do pico" />
 
-        <h3 className="new-spot__label">Esse pico é sugerido para qual modalidade? Selecione as categorias.</h3>
+        <h3 className="new-spot__label">Esse pico é sugerido pra qual modalidade? Selecione as categorias.</h3>
 
-        <Checkbox
-          medium
-          id="street"
-          label="Street" />
+        <Checkbox medium id="street" label="Street" />
+        <Checkbox medium id="longboard" label="Longboard" />
 
-        <Checkbox
-          medium
-          id="longboard"
-          label="Longboard" />
+        <h3 className="new-spot__label">É necessário pagar pra andar aí?, Marque uma opção.</h3>
 
-        <h3 className="new-spot__label">É necessário pagar para andar aí?, Marque a opção.</h3>
-
-        <Radio
-          name="cost"
-          id="paid"
-          label="O acesso é pago" />
-
-        <Radio
-          name="cost"
-          defaultChecked
-          id="free"
-          label="O acesso é gratuito" />
+        <Radio name="cost" id="paid" label="O acesso é pago" />
+        <Radio name="cost" defaultChecked id="free" label="O acesso é gratuito" />
 
         <Button
           full
