@@ -4,16 +4,15 @@ route: /docs/button
 menu: Components
 ---
 
-import { Playground, PropsTable, Link as _Link } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import Button from './Button'
 
 # Button
-### Easily to create buttons.
+### Easily to create component button.
 
 ## Usage
 <Playground>
-  <Button>Button</Button>
-  <Button disabled>Disabled</Button>
+  <Button primary>Button</Button>
 </Playground>
 
 ---
@@ -31,15 +30,6 @@ import Button from './Button'
 
 <Playground>
   <Button small>Small button</Button>
-</Playground>
-
----
-
-## With React Router
-Learn more about the [React Router](https://reacttraining.com/react-router/) library.
-
-<Playground>
-  <Button component={_Link} to="/docs/link">Button with React Router</Button>
 </Playground>
 
 ---

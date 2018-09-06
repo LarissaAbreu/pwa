@@ -1,6 +1,8 @@
 import React from 'react'
 import classnames from 'classnames'
 
+import '../../styles/components/button.styl'
+
 const Button = ({
   black,
   white,
@@ -8,8 +10,7 @@ const Button = ({
   large,
   medium,
   text,
-  onClick,
-  className,
+  children,
   ...props
 }) => {
   const classes = classnames('button', {
@@ -21,8 +22,8 @@ const Button = ({
   })
 
   return (
-    <button className={`${className} ${classes}`} onClick={onClick} {...props}>
-      {text}
+    <button className={`${classes}`} {...props}>
+      {children}
     </button>
   )
 }

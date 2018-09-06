@@ -23,11 +23,9 @@ const RecordSpotData = ({ onSubmit }) => (
         <Radio name="cost" id="paid" label="O acesso é pago" />
         <Radio name="cost" defaultChecked id="free" label="O acesso é gratuito" />
 
-        <Button
-          full
-          black
-          className="new-spot__form__button"
-          text="Salvar esse local" />
+        <Button full black className="new-spot__form__button">
+          Salvar esse local
+        </Button>
       </form>
     </div>
   </div>

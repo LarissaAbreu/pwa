@@ -89,12 +89,9 @@ class NewSpot extends Component {
 
         <i className="icon--marker new-spot__marker" />
 
-        <Button
-          full
-          black
-          onClick={this.recordSpotData}
-          className="new-spot__button"
-          text="Confirmar essa posição" />
+        <Button full black onClick={this.recordSpotData} className="new-spot__button">
+          Confirmar essa posição
+        </Button>
 
         <LocationContainer event={this.event} className="new-spot__location" />
       </div>

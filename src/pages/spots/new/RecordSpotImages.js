@@ -11,11 +11,9 @@ const RecordSpotImages = ({ onSubmit }) => (
       <form className="new-spot__form" onSubmit={onSubmit}>
         <Upload name="image" id="upload" label="Envie imagens do pico!" />
 
-        <Button
-          full
-          black
-          className="new-spot__form__button"
-          text="Adicionar imagens" />
+        <Button full black className="new-spot__form__button">
+          Adicionar imagens
+        </Button>
       </form>
     </div>
   </div>

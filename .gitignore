@@ -1,6 +1,8 @@
-node_modules
-package-lock.json
 src/static/styles
+node_modules
 build
-.idea
+package-lock.json
+yarn.lock
 pwa.iml
+.idea
+.docz
