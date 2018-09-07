@@ -105,8 +105,8 @@ class NewSpot extends Component {
         <Marker icon={icons.marker} />
 
         <ConfirmButton
-          size='full'
-          color='primary'
+          size="full"
+          color="primary"
           onClick={this.recordSpotData}>
           Confirmar essa posição
         </ConfirmButton>

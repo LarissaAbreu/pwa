@@ -30,7 +30,9 @@ class Landing extends Component {
             <img className="home__logo" src="../static/images/logo.svg" />
 
             <div className="home__sign">
-              <Button medium white text="Entrar" onClick={this.props.signIn} />
+              <Button color="secondary" size="medium" onClick={this.props.signIn}>
+                Entrar
+              </Button>
             </div>
           </div>
 
