@@ -1,7 +1,4 @@
 import React from 'react'
-import classnames from 'classnames'
-
-const MODIFIER = 'radio-group'
 
 const Radio = ({
   black,
@@ -18,15 +15,8 @@ const Radio = ({
   name,
   ...props
 }) => {
-  const classes = classnames({
-    [`${MODIFIER}--black`]: black,
-    [`${MODIFIER}--white`]: white,
-    [`${MODIFIER}--large`]: large,
-    [`${MODIFIER}--medium`]: medium
-  })
-
   return (
-    <div className={`radio-group ${classes}`}>
+    <div className={`radio-group`}>
       <input
         id={id}
         name={name}

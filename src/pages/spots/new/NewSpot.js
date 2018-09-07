@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-
+import styled from 'styled-components'
 import { withHandlers } from 'recompose'
 
+import icons from '../../../icons'
+import sizes from '../../../sizes'
+import colors from '../../../colors'
+
+import Icon from '../../../components/Icon'
 import Button from '../../../components/Button'
 
 import RecordSpotData from './RecordSpotData'
@@ -12,6 +17,29 @@ import EventType from '../../../EventType'
 
 import LocationContainer from '../../../containers/LocationContainer'
 
+const ConfirmButton = styled(Button)`
+  position: absolute;
+  bottom: 20px;
+  z-index: 500;
+  margin: 0 10px;
+  width: calc(100% - 20px);
+`
+
+const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 50px);
+`
+
+const Marker = styled(Icon)`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500;
+  font-size: 25px;
+`
+
 class NewSpot extends Component {
   state = {
     isRecordSpotDataVisible: false,
@@ -19,15 +47,7 @@ class NewSpot extends Component {
     data: {}
   }
 
-  constructor(props) {
-    super(props)
-
-    this.formDataWasSubmit = this.formDataWasSubmit.bind(this)
-    this.recordSpotData = this.recordSpotData.bind(this)
-    this.wasImageSubmited = this.wasImageSubmited.bind(this)
-  }
-
-  recordSpotData() {
+  recordSpotData = () => {
     Container.get('event').dispatch(EventType.CENTER_WAS_RECORDED)
 
     this.setState({
@@ -35,21 +55,16 @@ class NewSpot extends Component {
     })
   }
 
-  wasImageSubmited(event) {
+  wasImageSubmited = event => {
     event.preventDefault()
 
     const { data } = this.state
     const { upload } = event.target
 
     const [ file ] = upload.files
-
-
-    console.log(file)
-
-    // this.props.recordPossibleSpot(data)
   }
 
-  formDataWasSubmit(event) {
+  formDataWasSubmit = event => {
     event.preventDefault()
 
     this.setState({
@@ -83,18 +98,21 @@ class NewSpot extends Component {
     } = this.state
 
     return (
-      <div className="new-spot">
+      <Wrapper>
         {isRecordSpotImagesVisible && <RecordSpotImages onSubmit={this.wasImageSubmited} />}
         {isRecordSpotDataVisible && <RecordSpotData onSubmit={this.formDataWasSubmit} />}
 
-        <i className="icon--marker new-spot__marker" />
+        <Marker icon={icons.marker} />
 
-        <Button full black onClick={this.recordSpotData} className="new-spot__button">
+        <ConfirmButton
+          size='full'
+          color='primary'
+          onClick={this.recordSpotData}>
           Confirmar essa posição
-        </Button>
+        </ConfirmButton>
 
         <LocationContainer event={this.event} className="new-spot__location" />
-      </div>
+      </Wrapper>
     )
   }
 }

@@ -1,7 +1,4 @@
 import React from 'react'
-import classnames from 'classnames'
-
-const MODIFIER = 'checkbox-group'
 
 const Checkbox = ({
   black,
@@ -17,15 +14,8 @@ const Checkbox = ({
   id,
   ...props
 }) => {
-  const classes = classnames({
-    [`${MODIFIER}--black`]: black,
-    [`${MODIFIER}--white`]: white,
-    [`${MODIFIER}--large`]: large,
-    [`${MODIFIER}--medium`]: medium
-  })
-
   return (
-    <div className={`checkbox-group ${classes}`}>
+    <div className={`checkbox-group`}>
       <input
         id={id}
         name={id}

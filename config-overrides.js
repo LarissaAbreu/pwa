@@ -1,12 +1,5 @@
-const rupture = require('rupture')
-const rewireStyl = require('react-app-rewire-stylus')
+const rewireStyledComponents = require('react-app-rewire-styled-components')
 
-const override = (config, env) => {
-  config = rewireStyl.withLoaderOptions({
-    use: [rupture()]
-  })(config, env)
-
-  return config
-}
+const override = (config, env) => rewireStyledComponents(config, env)
 
 module.exports = override

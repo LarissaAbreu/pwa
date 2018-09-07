@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
 
 import { signInWithFacebook } from '../actions/auth'
@@ -12,7 +11,6 @@ class Landing extends Component {
 
     if (auth.authenticated) {
       history.push('/spots/list')
-
     }
   }
 

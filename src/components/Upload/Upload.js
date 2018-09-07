@@ -1,7 +1,4 @@
 import React from 'react'
-import classnames from 'classnames'
-
-const MODIFIER = 'upload-group'
 
 const Upload = ({
   black,
@@ -17,15 +14,8 @@ const Upload = ({
   id,
   ...props
 }) => {
-  const classes = classnames({
-    [`${MODIFIER}--black`]: black,
-    [`${MODIFIER}--white`]: white,
-    [`${MODIFIER}--large`]: large,
-    [`${MODIFIER}--medium`]: medium
-  })
-
   return (
-    <div className={`upload-group ${classes}`}>
+    <div className={`upload-group `}>
       <input
         id={id}
         name={id}

@@ -1,53 +1,64 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
+
+import icons from '../icons'
 
 import Menu from '../pages/Menu'
+import Icon from '../components/Icon'
+
+const MainWrapper = styled.div`
+  display: flex;
+`
+
+const Content = styled.div`
+  width: 100%;
+`
+
+const Bar = styled.div`
+  width: 100%;
+  height: 50px;
+  background: ${props => props.theme.colors.secondary};
+  position: relative;
+`
+
+const IconWrapper = styled(Icon)`
+  color: ${props => props.theme.colors.primary};
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: rem(24px);
+`
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.toggleMenu = this.toggleMenu.bind(this)
+  state = {
+    isMenuVisible: true
   }
 
-  toggleMenu() {
-    let menu = document.querySelector('.menu')
-    let content = document.querySelector('.content')
-
-    const MENU_HIDDEN_MODIFIER = 'menu--hidden'
-    const CONTENT_MODIFIER = 'content--fullable'
-
-    const close = () => {
-      menu.classList.remove(MENU_HIDDEN_MODIFIER)
-      content.classList.remove(CONTENT_MODIFIER)
-    }
-
-    const open = () => {
-      menu.classList.add(MENU_HIDDEN_MODIFIER)
-      content.classList.add(CONTENT_MODIFIER)
-    }
-
-
-    return menu.classList.contains(MENU_HIDDEN_MODIFIER)
-      ? close()
-      : open()
+  toggleMenu = () => {
+    this.setState(({ isMenuVisible }) => ({
+      isMenuVisible: !isMenuVisible
+    }))
   }
 
   render() {
     const { firebase, history } = this.props
+    const { isMenuVisible } = this.state
 
     return (
-      <div className="main">
-        <Menu firebase={firebase} history={history} />
+      <MainWrapper>
+        {isMenuVisible && <Menu toggleMenu={this.toggleMenu} firebase={firebase} history={history} />}
 
-        <div className="content content--fullable">
-            <div className="bar">
-            <i className="icon icon--menu" onClick={this.toggleMenu}></i>
-          </div>
+        <Content>
+          <Bar>
+            <IconWrapper icon={icons.menu} onClick={this.toggleMenu} />
+          </Bar>
 
           {this.props.children}
-        </div>
-      </div>
+        </Content>
+      </MainWrapper>
     )
   }
 }

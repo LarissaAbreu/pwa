@@ -1,83 +1,110 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
+import icons from '../icons'
+import Icon from '../components/Icon'
 import { signOut } from '../actions/auth'
 
+const Header = styled.div`
+  text-align: center;
+  background: ${props => props.theme.colors.secondary};
+  padding: 20px 0;
+`
+
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 250px;
+  min-height: 100vh;
+`
+
+const Photo = styled.img`
+  width: 100%;
+  height: 100%;
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 50%;
+`
+
+const Name = styled.h2`
+  font-size: 18px;
+  color: ${props => props.theme.colors.primary};
+  font-weight: 400;
+`
+
+const Role = styled.div`
+  font-size: 14px;
+  color: ${props => props.theme.colors.primary};
+`
+
+const LinkWrapper = styled(Link)`
+  font-size: 14px;
+  color: ${props => props.theme.colors.secondary};
+  display: block;
+  font-weight: 500;
+  padding: 15px 20px;
+  cursor: pointer;
+  text-decoration: none;
+`
+
+const IconWraper = styled(Icon)`
+  font-size: 18px;
+  margin-right: 10px;
+  vertical-align: middle;
+`
+
 class Menu extends Component {
-  constructor(props) {
-    super(props)
-
-    this.closeMenu = this.closeMenu.bind(this)
-    this.redirectAndSignOut = this.redirectAndSignOut.bind(this)
-  }
-
-  closeMenu() {
-    let menu = document.querySelector('.menu')
-    let content = document.querySelector('.content')
-
-    const MENU_HIDDEN_MODIFIER = 'menu--hidden'
-    const CONTENT_MODIFIER = 'content--fullable'
-
-    menu.classList.add(MENU_HIDDEN_MODIFIER)
-    content.classList.add(CONTENT_MODIFIER)
-  }
-
-  redirectAndSignOut() {
+  signOut = () => {
     const { signOut, history } = this.props
 
     signOut()
   }
 
   render() {
-    const {
-      auth,
-      api: { profile }
-    } = this.props
+    const { toggleMenu, auth, api: { profile }} = this.props
 
     return (
-      <div className="menu menu--hidden">
-        <div className="menu__header">
-          <img className="menu__photo" src={profile.avatarUrl} />
-          <h2 className="menu__name">{profile.displayName}</h2>
-          <span className="menu__role">Usuário</span>
-        </div>
+      <Wrapper>
+        <Header>
+          <Photo src={profile.avatarUrl} />
+          <Name>{profile.displayName}</Name>
+          <Role>Usuáro</Role>
+        </Header>
 
-        <div className="menu__body">
-          <Link className="menu__link" to="/spots/list" onClick={this.closeMenu}>
-            <span className="menu__link__icon icon--skateboarder" />
-            Todos os picos
-          </Link>
+        <LinkWrapper to="/spots/list" onClick={toggleMenu}>
+          <IconWraper icon={icons.skateboarder} />
+          Todos os picos
+        </LinkWrapper>
 
-          {
-            auth.isAdmin &&
-            <Link className="menu__link" to="/spots/analyze" onClick={this.closeMenu}>
-              <span className="menu__link__icon icon--configuration" />
-              Analisar pico
-            </Link>
-          }
+        {
+          auth.isAdmin &&
+          <LinkWrapper to="/spots/analyze" onClick={toggleMenu}>
+            <IconWraper icon={icons.configuration} />
+            Analisar pico
+          </LinkWrapper>
+        }
 
-          <Link className="menu__link" to="/spots/new" onClick={this.closeMenu}>
-            <span className="menu__link__icon icon--plus" />
-            Adicionar novo pico
-          </Link>
+        <LinkWrapper to="/spots/new" onClick={toggleMenu}>
+          <IconWraper icon={icons.plus} />
+          Adicionar novo pico
+        </LinkWrapper>
 
-          <Link className="menu__link" to="" onClick={this.closeMenu}>
-            <span className="menu__link__icon icon--trophy" />
-            Campeonatos
-          </Link>
+        <LinkWrapper to="" onClick={toggleMenu}>
+          <IconWraper icon={icons.trophy} />
+          Campeonatos
+        </LinkWrapper>
 
-          <Link className="menu__link" to="" onClick={this.closeMenu}>
-            <span className="menu__link__icon icon--shopping" />
-            Skateshops
-          </Link>
+        <LinkWrapper to="" onClick={toggleMenu}>
+          <IconWraper icon={icons.shopping} />
+          Skateshops
+        </LinkWrapper>
 
-          <span className="menu__link" onClick={this.redirectAndSignOut}>
-            <span className="menu__link__icon icon--logout" />
-            Sair
-          </span>
-        </div>
-      </div>
+        <LinkWrapper to="/" onClick={this.signOut}>
+          <IconWraper icon={icons.logout} />
+          Sair
+        </LinkWrapper>
+      </Wrapper>
     )
   }
 }

@@ -1,7 +1,4 @@
 import React from 'react'
-import classnames from 'classnames'
-
-const MODIFIER = 'input-group'
 
 const Input = ({
   black,
@@ -17,15 +14,8 @@ const Input = ({
   id,
   ...props
 }) => {
-  const classes = classnames({
-    [`${MODIFIER}--black`]: black,
-    [`${MODIFIER}--white`]: white,
-    [`${MODIFIER}--large`]: large,
-    [`${MODIFIER}--medium`]: medium
-  })
-
   return (
-    <div className={`input-group ${classes}`}>
+    <div className={`input-group `}>
       <input
         id={id}
         name={id}
