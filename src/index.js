@@ -9,16 +9,14 @@ import App from './App'
 
 import { store, persistedStore } from './store'
 
+import icomoon from './statics/fonts/icomoon.woff'
+
 injectGlobal`
   @font-face {
     font-style: normal;
     font-weight: normal;
-    font-family: 'icomoon';
-    src: url('../statics/fonts/icomoon.eot');
-    src: url('../statics/fonts/icomoon.eot#iefix') format('embedded-opentype'),
-        url('../statics/fonts/icomoon.ttf') format('truetype'),
-        url('../statics/fonts/icomoon.woff') format('woff'),
-        url('../statics/fonts/icomoon.svg#icomoon') format('svg');
+    font-family: icomoon;
+    src: url(${icomoon});
   }
 
   * {

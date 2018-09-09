@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
+import styled from 'styled-components'
 import { Map, TileLayer } from 'react-leaflet'
 
 import RecordableCenter from '../model/spots/RecordableCenter'
@@ -16,15 +16,13 @@ class LocationContainer extends Component {
   constructor() {
     super()
 
-    this.recordCenter = this.recordCenter.bind(this)
-
     Container.get('event').add(EventType.CENTER_WAS_RECORDED, this.recordCenter)
   }
 
   /**
    * @todo Verify that the viewport property is available
    */
-  recordCenter() {
+  recordCenter = () => {
     const { center: [lat, lng], zoom } = this.reference.viewport
     this.props.recordCenter(RecordableCenter.build(lat, lng, zoom))
   }

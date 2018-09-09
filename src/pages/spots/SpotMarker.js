@@ -1,19 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react'
 import { Marker } from 'react-leaflet'
+import styled from 'styled-components'
+
+const Modal = styled.div`
+  max-width: 500px;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: ${props => props.theme.colors.primary};
+  display: block;
+`
 
 class SpotMarker extends Component {
   static state = {
     isVibisible: false
   }
 
-  constructor() {
-    super()
-
-    this.openDialogInformation = this.openDialogInformation.bind(this)
-  }
-
-  openDialogInformation() {
+  openDialogInformation = () => {
     this.setState({
       isVibisible: true
     })
@@ -30,23 +35,24 @@ class SpotMarker extends Component {
       longitude
     } = this.props
 
+    const imagesCollection = images.map(image => <img key={Math.random()} src={image} />)
+
     return (
-      <div className="spot-marker">
-        {this.state.isVisible && <div className="spot-marker__modal">
-          {name}
-          {images.map(image => <img key={Math.random()} src={image} />)}
-        </div>}
+      <Fragment>
+        {this.state.isVisible && (
+          <Modal>
+            {name}
+            {imagesCollection}
+          </Modal>
+        )}
 
         <Marker
-          className="spot-marker__marker"
           //icon="../static/images/skateboarder.png"
           onClick={this.openDialogInformation}
           position={{ lat: latitude, lng: longitude }} />
-      </div>
+      </Fragment>
     )
   }
 }
 
-const mapStateToProps = state => state
-
-export default connect(mapStateToProps, null)(SpotMarker)
+export default SpotMarker

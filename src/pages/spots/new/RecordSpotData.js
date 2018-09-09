@@ -5,30 +5,33 @@ import Input from '../../../components/Input'
 import Radio from '../../../components/Radio'
 import Checkbox from '../../../components/Checkbox'
 
+import RecordWrapper from './styles/RecordWrapper'
+import WrapperTitle from './styles/WrapperTitle'
+import WrapperSubtitle from './styles/WrapperSubtitle'
+import RecordButton from './styles/RecordButton'
+
+const RecordDataButton = RecordButton(Button)
+
 const RecordSpotData = ({ onSubmit }) => (
-  <div className="new-spot__content">
-    <div className="new-spot__container">
-      <h1 className="new-spot__title">Ei, adicione as informações do seu pico</h1>
+  <RecordWrapper onSubmit={onSubmit}>
+    <WrapperTitle>Ei, adicione as informações do seu pico</WrapperTitle>
 
-      <form className="new-spot__form" onSubmit={onSubmit}>
-        <Input required id="name" label="Nome do pico" />
+    <Input required id="name" label="Nome do pico" />
 
-        <h3 className="new-spot__label">Esse pico é sugerido pra qual modalidade? Selecione as categorias.</h3>
+    <WrapperSubtitle>Esse pico é sugerido pra qual modalidade? Selecione as categorias.</WrapperSubtitle>
 
-        <Checkbox medium id="street" label="Street" />
-        <Checkbox medium id="longboard" label="Longboard" />
+    <Checkbox medium id="street" label="Street" />
+    <Checkbox medium id="longboard" label="Longboard" />
 
-        <h3 className="new-spot__label">É necessário pagar pra andar aí?, Marque uma opção.</h3>
+    <WrapperSubtitle>É necessário pagar pra andar aí?, Marque uma opção.</WrapperSubtitle>
 
-        <Radio name="cost" id="paid" label="O acesso é pago" />
-        <Radio name="cost" defaultChecked id="free" label="O acesso é gratuito" />
+    <Radio name="cost" id="paid" label="O acesso é pago" />
+    <Radio name="cost" id="free" label="O acesso é gratuito" defaultChecked />
 
-        <Button size="full" color="primary" className="new-spot__form__button">
-          Salvar esse local
-        </Button>
-      </form>
-    </div>
-  </div>
+    <RecordDataButton color="primary" size="full">
+      Salvar esse local
+    </RecordDataButton>
+  </RecordWrapper>
 )
 
 export default RecordSpotData

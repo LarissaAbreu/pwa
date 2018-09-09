@@ -3,20 +3,22 @@ import React from 'react'
 import Button from '../../../components/Button'
 import Upload from '../../../components/Upload'
 
+import RecordWrapper from './styles/RecordWrapper'
+import WrapperTitle from './styles/WrapperTitle'
+import RecordButton from './styles/RecordButton'
+
+const RecordImagesButton = RecordButton(Button)
+
 const RecordSpotImages = ({ onSubmit }) => (
-  <div className="new-spot__content">
-    <div className="new-spot__container">
-      <h1 className="new-spot__title">Adicione imagens do pico</h1>
+  <RecordWrapper onSubmit={onSubmit}>
+    <WrapperTitle>Adicione imagens do pico</WrapperTitle>
 
-      <form className="new-spot__form" onSubmit={onSubmit}>
-        <Upload name="image" id="upload" label="Envie imagens do pico!" />
+    <Upload name="image" id="upload" label="Envie imagens do pico!" />
 
-        <Button color="primary" className="new-spot__form__button">
-          Adicionar imagens
-        </Button>
-      </form>
-    </div>
-  </div>
+    <RecordImagesButton color="primary" size="full">
+      Adicionar imagens
+    </RecordImagesButton>
+  </RecordWrapper>
 )
 
 export default RecordSpotImages

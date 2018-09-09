@@ -6,6 +6,10 @@ const theme = {
     full: sizes.full,
     small: sizes.small,
   },
+  breakpoints: {
+    tablet: '768px',
+    desktop: '1024px'
+  },
   colors: {
     primary: colors.primary,
     secondary: colors.secondary
