@@ -3,9 +3,9 @@ import React from 'react'
 import Button from '../../../components/Button'
 import Upload from '../../../components/Upload'
 
-import RecordWrapper from './styles/RecordWrapper'
-import WrapperTitle from './styles/WrapperTitle'
-import RecordButton from './styles/RecordButton'
+import RecordWrapper from './ui/RecordWrapper'
+import WrapperTitle from './ui/WrapperTitle'
+import RecordButton from './ui/RecordButton'
 
 const RecordImagesButton = RecordButton(Button)
 

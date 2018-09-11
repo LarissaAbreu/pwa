@@ -12,7 +12,9 @@ const theme = {
   },
   colors: {
     primary: colors.primary,
-    secondary: colors.secondary
+    secondary: colors.secondary,
+    third: colors.third,
+    fourth: colors.fourth
   },
   combinations: {
     primary: {

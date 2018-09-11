@@ -1,36 +1,27 @@
 import React from 'react'
 
-const Radio = ({
-  black,
-  white,
-  full,
-  large,
-  medium,
-  text,
-  onClick,
-  onChange,
-  value,
-  label,
-  id,
-  name,
-  ...props
-}) => {
+import icons from '../../icons'
+
+import Label from '../ui/Opcionable/Label'
+import Group from '../ui/Opcionable/Group'
+import Input from '../ui/Opcionable/Input'
+import IconWrapper from '../ui/Opcionable/IconWrapper'
+
+const Radio = ({ id, name, text, ...props }) => {
   return (
-    <div className={`radio-group`}>
-      <input
+    <Group>
+      <Input
         id={id}
         name={name}
-        className="radio-group__radio"
-        type="radio"
-        onChange={onChange}
-        {...props} />
+        {...props}
+        type="radio" />
 
-      <label className="radio-group__label" htmlFor={id}>
-        {label}
+      <Label htmlFor={id}>
+        {text}
 
-        <i className="radio-group__label__icon icon--check"></i>
-      </label>
-    </div>
+        <IconWrapper icon={icons.check} />
+      </Label>
+    </Group>
   )
 }
 

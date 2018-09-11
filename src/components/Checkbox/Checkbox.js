@@ -1,35 +1,27 @@
 import React from 'react'
 
-const Checkbox = ({
-  black,
-  white,
-  full,
-  large,
-  medium,
-  text,
-  onClick,
-  onChange,
-  value,
-  label,
-  id,
-  ...props
-}) => {
+import icons from '../../icons'
+
+import Label from '../ui/Opcionable/Label'
+import Group from '../ui/Opcionable/Group'
+import Input from '../ui/Opcionable/Input'
+import IconWrapper from '../ui/Opcionable/IconWrapper'
+
+const Checkbox = ({ id, text, ...props }) => {
   return (
-    <div className={`checkbox-group`}>
-      <input
+    <Group>
+      <Input
         id={id}
         name={id}
-        className="checkbox-group__checkbox"
-        type="checkbox"
-        onChange={onChange}
-        {...props} />
+        {...props}
+        type="checkbox" />
 
-      <label className="checkbox-group__label" htmlFor={id}>
-        {label}
+      <Label htmlFor={id}>
+        {text}
 
-        <i className="checkbox-group__label__icon icon--check"></i>
-      </label>
-    </div>
+        <IconWrapper icon={icons.check} />
+      </Label>
+    </Group>
   )
 }
 

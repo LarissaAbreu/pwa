@@ -5,10 +5,10 @@ import Input from '../../../components/Input'
 import Radio from '../../../components/Radio'
 import Checkbox from '../../../components/Checkbox'
 
-import RecordWrapper from './styles/RecordWrapper'
-import WrapperTitle from './styles/WrapperTitle'
-import WrapperSubtitle from './styles/WrapperSubtitle'
-import RecordButton from './styles/RecordButton'
+import RecordWrapper from './ui/RecordWrapper'
+import WrapperTitle from './ui/WrapperTitle'
+import WrapperSubtitle from './ui/WrapperSubtitle'
+import RecordButton from './ui/RecordButton'
 
 const RecordDataButton = RecordButton(Button)
 
@@ -16,17 +16,17 @@ const RecordSpotData = ({ onSubmit }) => (
   <RecordWrapper onSubmit={onSubmit}>
     <WrapperTitle>Ei, adicione as informações do seu pico</WrapperTitle>
 
-    <Input required id="name" label="Nome do pico" />
+    <Input required id="name" text="Nome do pico" />
 
     <WrapperSubtitle>Esse pico é sugerido pra qual modalidade? Selecione as categorias.</WrapperSubtitle>
 
-    <Checkbox medium id="street" label="Street" />
-    <Checkbox medium id="longboard" label="Longboard" />
+    <Checkbox id="street" text="Street" />
+    <Checkbox id="longboard" text="Longboard" />
 
     <WrapperSubtitle>É necessário pagar pra andar aí?, Marque uma opção.</WrapperSubtitle>
 
-    <Radio name="cost" id="paid" label="O acesso é pago" />
-    <Radio name="cost" id="free" label="O acesso é gratuito" defaultChecked />
+    <Radio id="paid" name="cost" text="O acesso é pago" />
+    <Radio id="free" name="cost" text="O acesso é gratuito" defaultChecked />
 
     <RecordDataButton color="primary" size="full">
       Salvar esse local
