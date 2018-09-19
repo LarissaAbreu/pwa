@@ -15,7 +15,7 @@ const RecordSpotImages = ({ onSubmit }) => (
 
     <Upload name="image" id="upload" label="Envie imagens do pico!" />
 
-    <RecordImagesButton color="primary" size="full">
+    <RecordImagesButton color="primary" size="large">
       Adicionar imagens
     </RecordImagesButton>
   </RecordWrapper>

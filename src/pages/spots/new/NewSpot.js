@@ -8,6 +8,7 @@ import colors from '../../../colors'
 
 import Icon from '../../../components/Icon'
 import Button from '../../../components/Button'
+import Modal from '../../../components/Modal'
 
 import RecordSpotData from './RecordSpotData'
 import RecordSpotImages from './RecordSpotImages'
@@ -44,7 +45,15 @@ class NewSpot extends Component {
   state = {
     isRecordSpotDataVisible: false,
     isRecordSpotImagesVisible: false,
+    isSpotRecorded: false,
     data: {}
+  }
+
+  isModalSpotRecordadedVisible = () => {
+    this.setState(({ isSpotRecorded }) => ({
+      isSpotRecorded: !isSpotRecorded,
+      isRecordSpotImagesVisible: false
+    }))
   }
 
   recordSpotData = () => {
@@ -55,16 +64,19 @@ class NewSpot extends Component {
     })
   }
 
-  wasImageSubmited = event => {
+  imageWasSubmited = event => {
     event.preventDefault()
 
     const { data } = this.state
     const { upload } = event.target
-
     const [ file ] = upload.files
+
+    if (this.props.recordSpot({...data, file})) {
+      this.isModalSpotRecordadedVisible()
+    }
   }
 
-  formDataWasSubmit = event => {
+  formDataWasSubmited = event => {
     event.preventDefault()
 
     this.setState({
@@ -94,18 +106,27 @@ class NewSpot extends Component {
   render() {
     const {
       isRecordSpotDataVisible,
-      isRecordSpotImagesVisible
+      isRecordSpotImagesVisible,
+      isSpotRecorded
     } = this.state
 
     return (
       <Wrapper>
-        {isRecordSpotImagesVisible && <RecordSpotImages onSubmit={this.wasImageSubmited} />}
-        {isRecordSpotDataVisible && <RecordSpotData onSubmit={this.formDataWasSubmit} />}
+        {
+          isSpotRecorded &&
+          
+          <Modal
+            onClickButton={this.isModalSpotRecordadedVisible}
+            description="Pico cadastrado com sucesso!" />
+        }
+
+        {isRecordSpotImagesVisible && <RecordSpotImages onSubmit={this.imageWasSubmited} />}
+        {isRecordSpotDataVisible && <RecordSpotData onSubmit={this.formDataWasSubmited} />}
 
         <Marker icon={icons.marker} />
 
         <ConfirmButton
-          size="full"
+          size="large"
           color="primary"
           onClick={this.recordSpotData}>
           Confirmar essa posição
@@ -118,13 +139,18 @@ class NewSpot extends Component {
 }
 
 const mapHandlers = ({
-  recordPossibleSpot: ({ firebase, spot, auth }) => data => {
-    return firebase.push('analyze', {
-      type: 'spots',
-      location: spot,
-      uid: auth.id,
-      data
-    })
+  recordSpot: ({ firebase, spot, auth }) => data => {
+    const PATH = 'images'
+    // firebase.push('analyze', {
+    //   type: 'spots',
+    //   location: spot,
+    //   uid: auth.id,
+    //   data
+    // })
+
+    firebase.uploadFile(PATH, data.file, PATH)
+
+    return true
   }
 })
 

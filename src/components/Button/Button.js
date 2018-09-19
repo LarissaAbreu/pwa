@@ -1,5 +1,24 @@
 import styled, { css } from 'styled-components'
 
+const large = css`
+  width: 100%;
+  padding: 10px 40px;
+`
+
+const medium = css`
+  padding: 10px 30px;
+`
+
+const small = css`
+  padding: 5px 20px;
+`
+
+const map = {
+  large,
+  medium,
+  small
+}
+
 const Button = styled.button`
   font-size: 14px;
   letter-spacing: 1px;
@@ -11,14 +30,7 @@ const Button = styled.button`
   cursor: pointer;
   background: ${props => props.theme.combinations[props.color].background};
   color: ${props => props.theme.combinations[props.color].color};
-
-  ${props =>
-    props.size === props.theme.sizes.full &&
-    css`
-      width: 100%;
-      padding: 10px 20px;
-    `
-  };
+  ${props => map[props.size]}
 `
 
 export default Button
