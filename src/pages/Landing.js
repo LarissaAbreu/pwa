@@ -27,7 +27,7 @@ class Landing extends Component {
       <div className="landing">
         <div className="home">
           <div className="home__header">
-            <img className="home__logo" src="../static/images/logo.svg" />
+            <img className="home__logo" src="../static/images/logo.svg" alt="" />
 
             <div className="home__sign">
               <Button color="secondary" size="medium" onClick={this.props.signIn}>
@@ -53,8 +53,17 @@ class Landing extends Component {
         <div className="socials">
           <h2 className="socials__title">Siga nossas redes</h2>
 
-          <a className="socials__icon icon--facebook" rel="noopener" target="_blank" href="https://facebook.com/ondetempico"></a>
-          <a className="socials__icon icon--instagram" rel="noopener" target="_blank" href="https://instagram.com/ondetempico"></a>
+          <a
+            className="socials__icon icon--facebook"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://facebook.com/ondetempico" />
+
+          <a
+            className="socials__icon icon--instagram"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://instagram.com/ondetempico" />
         </div>
       </div>
     )

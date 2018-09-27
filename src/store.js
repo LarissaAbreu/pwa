@@ -11,7 +11,7 @@ import { firebaseApp } from './firebase'
 import { reactReduxFirebase } from 'react-redux-firebase'
 
 import reducers from './reducers/index'
-const middlewares = applyMiddleware(logger, thunk)
+const middlewares = applyMiddleware(thunk)
 
 const firebaseConfig = {
   userProfile: 'users',

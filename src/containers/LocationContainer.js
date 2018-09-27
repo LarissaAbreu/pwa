@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import { Map, TileLayer } from 'react-leaflet'
 
 import RecordableCenter from '../model/spots/RecordableCenter'
@@ -9,26 +8,20 @@ import { fetchLocation } from '../actions/location'
 import { recordCenter } from '../actions/spot'
 
 import Loader from '../components/Loader'
-import Container from '../Container'
-import EventType from '../EventType'
 
 class LocationContainer extends Component {
-  constructor() {
-    super()
-
-    Container.get('event').add(EventType.CENTER_WAS_RECORDED, this.recordCenter)
-  }
-
-  /**
-   * @todo Verify that the viewport property is available
-   */
-  recordCenter = () => {
-    const { center: [lat, lng], zoom } = this.reference.viewport
-    this.props.recordCenter(RecordableCenter.build(lat, lng, zoom))
-  }
 
   componentDidMount() {
     this.props.fetchLocation()
+  }
+
+  /**
+   * @todo This is not performatic
+   */
+  recordCenter = event => {
+    const { center: [lat, lng], zoom } = event
+
+    this.props.recordCenter(RecordableCenter.build(lat, lng, zoom))
   }
 
   render() {
@@ -41,8 +34,8 @@ class LocationContainer extends Component {
     return (
       <Map
         zoom={17}
-        ref={reference => this.reference = reference}
         style={{height: 'calc(100vh - 50px)'}}
+        onViewportChanged={this.recordCenter}
         center={{ lat: coords.latitude, lng: coords.longitude }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 

@@ -1,7 +1,5 @@
 import { CENTER_WAS_RECORDED } from '../constants'
 
-import RecordableCenter from '../model/spots/RecordableCenter'
-
 /**
  * @param {RecordableCenter} center
  * @returns {Function}

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { withHandlers } from 'recompose'
+import { connect } from 'react-redux'
+import { withHandlers, compose } from 'recompose'
 
 import icons from '../../../icons'
-import sizes from '../../../sizes'
-import colors from '../../../colors'
 
 import Icon from '../../../components/Icon'
 import Button from '../../../components/Button'
@@ -12,9 +11,6 @@ import Modal from '../../../components/Modal'
 
 import RecordSpotData from './RecordSpotData'
 import RecordSpotImages from './RecordSpotImages'
-
-import Container from '../../../Container'
-import EventType from '../../../EventType'
 
 import LocationContainer from '../../../containers/LocationContainer'
 
@@ -56,8 +52,11 @@ class NewSpot extends Component {
     }))
   }
 
+  /**
+   * @todo If spot is empty, display modal that we can't get position
+   */
   recordSpotData = () => {
-    Container.get('event').dispatch(EventType.CENTER_WAS_RECORDED)
+    const { spot } = this.props
 
     this.setState({
       isRecordSpotDataVisible: true
@@ -114,7 +113,7 @@ class NewSpot extends Component {
       <Wrapper>
         {
           isSpotRecorded &&
-          
+
           <Modal
             onClickButton={this.isModalSpotRecordadedVisible}
             description="Pico cadastrado com sucesso!" />
@@ -139,8 +138,10 @@ class NewSpot extends Component {
 }
 
 const mapHandlers = ({
-  recordSpot: ({ firebase, spot, auth }) => data => {
+  recordSpot: ({ firebase, spot, auth }) => async data => {
+    const { file } = data
     const PATH = 'images'
+
     // firebase.push('analyze', {
     //   type: 'spots',
     //   location: spot,
@@ -148,10 +149,29 @@ const mapHandlers = ({
     //   data
     // })
 
-    firebase.uploadFile(PATH, data.file, PATH)
+    const options = {
+      metadataFactory: response => {
+        const { metadata: {
+          cacheControl,
+          contentLanguage,
+          customMetadata,
+          ...data
+        }} = response
+
+        return data
+      }
+    }
+
+    firebase.uploadFile(PATH, file, PATH, options)
+      .catch(result => console.log(result))
 
     return true
   }
 })
 
-export default withHandlers(mapHandlers)(NewSpot)
+const mapStateToProps = state => state
+
+export default compose(
+  connect(mapStateToProps),
+  withHandlers(mapHandlers)
+)(NewSpot)
