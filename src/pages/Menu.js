@@ -69,7 +69,7 @@ class Menu extends Component {
         <Header>
           <Photo src={profile.avatarUrl} />
           <Name>{profile.displayName}</Name>
-          <Role>Usuáro</Role>
+          <Role>Usuário</Role>
         </Header>
 
         <LinkWrapper to="/spots/list" onClick={toggleMenu}>
