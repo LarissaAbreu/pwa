@@ -1,10 +1,21 @@
 import { CENTER_WAS_RECORDED } from '../constants'
 
-const initialState = {
+import { SpotAction } from '../actions/spot'
 
+export type SpotState = {
+  latitude?: number
+  longitude?: number
+  zoom?: number
 }
 
-export function spot(state = initialState, { payload, type }) {
+const initialState = {}
+
+export function spot(
+  state: SpotState = initialState,
+  action: SpotAction
+): SpotState {
+  const { type, payload } = action
+
   switch (type) {
     case CENTER_WAS_RECORDED:
       const { latitude, longitude, zoom } = payload

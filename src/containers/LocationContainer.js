@@ -10,7 +10,6 @@ import { recordCenter } from '../actions/spot'
 import Loader from '../components/Loader'
 
 class LocationContainer extends Component {
-
   componentDidMount() {
     this.props.fetchLocation()
   }
@@ -19,7 +18,10 @@ class LocationContainer extends Component {
    * @todo This is not performatic
    */
   recordCenter = event => {
-    const { center: [lat, lng], zoom } = event
+    const {
+      center: [lat, lng],
+      zoom
+    } = event
 
     this.props.recordCenter(RecordableCenter.build(lat, lng, zoom))
   }
@@ -29,15 +31,18 @@ class LocationContainer extends Component {
       return <Loader text="Carregando mapa" />
     }
 
-    const { location: { coords }} = this.props
+    const {
+      location: { coords }
+    } = this.props
 
     return (
       <Map
         zoom={17}
-        style={{height: 'calc(100vh - 50px)'}}
+        style={{ height: 'calc(100vh - 50px)' }}
         onViewportChanged={this.recordCenter}
-        center={{ lat: coords.latitude, lng: coords.longitude }}>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+        center={{ lat: coords.latitude, lng: coords.longitude }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         {this.props.children}
       </Map>
@@ -52,4 +57,7 @@ const mapActionsToProps = dispatch => ({
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, mapActionsToProps)(LocationContainer)
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(LocationContainer)

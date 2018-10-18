@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { signInWithFacebook } from '../actions/auth'
+import { signInWithSocial } from '../actions/auth'
 
 import Button from '../components/Button'
 
@@ -27,26 +27,41 @@ class Landing extends Component {
       <div className="landing">
         <div className="home">
           <div className="home__header">
-            <img className="home__logo" src="../static/images/logo.svg" alt="" />
+            <img
+              className="home__logo"
+              src="../static/images/logo.svg"
+              alt=""
+            />
 
             <div className="home__sign">
-              <Button color="secondary" size="medium" onClick={this.props.signIn}>
+              <Button
+                color="secondary"
+                size="medium"
+                onClick={this.props.signIn}
+              >
                 Entrar
               </Button>
             </div>
           </div>
 
           <div className="home__body">
-            <h1 className="home__title">Em breve, encontre e compartilhe novos picos para sua sessão.</h1>
+            <h1 className="home__title">
+              Em breve, encontre e compartilhe novos picos para sua sessão.
+            </h1>
           </div>
         </div>
 
         <div className="spots">
-          <div className="spots__image"></div>
+          <div className="spots__image" />
 
           <div className="spots__explanation">
             <h2 className="spots__title">Encontre diversos picos</h2>
-            <p className="spots__description">De maneira colaborativa, skatistas compartilharem picos (locais para se praticar o esporte) para que haja troca de conhecimento entre estes, com características do local, sendo pago ou público, street e outras modalidades.</p>
+            <p className="spots__description">
+              De maneira colaborativa, skatistas compartilharem picos (locais
+              para se praticar o esporte) para que haja troca de conhecimento
+              entre estes, com características do local, sendo pago ou público,
+              street e outras modalidades.
+            </p>
           </div>
         </div>
 
@@ -57,13 +72,15 @@ class Landing extends Component {
             className="socials__icon icon--facebook"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://facebook.com/ondetempico" />
+            href="https://facebook.com/ondetempico"
+          />
 
           <a
             className="socials__icon icon--instagram"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://instagram.com/ondetempico" />
+            href="https://instagram.com/ondetempico"
+          />
         </div>
       </div>
     )
@@ -71,9 +88,12 @@ class Landing extends Component {
 }
 
 const mapActionsToProps = (dispatch, { firebase }) => ({
-  signIn: () => dispatch(signInWithFacebook(firebase))
+  signIn: () => dispatch(signInWithSocial(firebase))
 })
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, mapActionsToProps)(Landing)
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(Landing)

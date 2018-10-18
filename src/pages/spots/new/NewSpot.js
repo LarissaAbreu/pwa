@@ -68,9 +68,9 @@ class NewSpot extends Component {
 
     const { data } = this.state
     const { upload } = event.target
-    const [ file ] = upload.files
+    const [file] = upload.files
 
-    if (this.props.recordSpot({...data, file})) {
+    if (this.props.recordSpot({ ...data, file })) {
       this.isModalSpotRecordadedVisible()
     }
   }
@@ -83,19 +83,14 @@ class NewSpot extends Component {
       isRecordSpotImagesVisible: true
     })
 
-    const {
-      name,
-      street,
-      longboard,
-      free
-    } = event.target
+    const { name, street, longboard, free } = event.target
 
     const data = {
       name: name.value,
       hasFree: !!free.checked,
       modalities: {
         street: street.checked,
-        longboard: longboard.checked,
+        longboard: longboard.checked
       }
     }
 
@@ -111,23 +106,27 @@ class NewSpot extends Component {
 
     return (
       <Wrapper>
-        {
-          isSpotRecorded &&
-
+        {isSpotRecorded && (
           <Modal
             onClickButton={this.isModalSpotRecordadedVisible}
-            description="Pico cadastrado com sucesso!" />
-        }
+            description="Pico cadastrado com sucesso!"
+          />
+        )}
 
-        {isRecordSpotImagesVisible && <RecordSpotImages onSubmit={this.imageWasSubmited} />}
-        {isRecordSpotDataVisible && <RecordSpotData onSubmit={this.formDataWasSubmited} />}
+        {isRecordSpotImagesVisible && (
+          <RecordSpotImages onSubmit={this.imageWasSubmited} />
+        )}
+        {isRecordSpotDataVisible && (
+          <RecordSpotData onSubmit={this.formDataWasSubmited} />
+        )}
 
         <Marker icon={icons.marker} />
 
         <ConfirmButton
           size="large"
           color="primary"
-          onClick={this.recordSpotData}>
+          onClick={this.recordSpotData}
+        >
           Confirmar essa posição
         </ConfirmButton>
 
@@ -137,7 +136,7 @@ class NewSpot extends Component {
   }
 }
 
-const mapHandlers = ({
+const mapHandlers = {
   recordSpot: ({ firebase, spot, auth }) => async data => {
     const { file } = data
     const PATH = 'images'
@@ -151,23 +150,21 @@ const mapHandlers = ({
 
     const options = {
       metadataFactory: response => {
-        const { metadata: {
-          cacheControl,
-          contentLanguage,
-          customMetadata,
-          ...data
-        }} = response
+        const {
+          metadata: { cacheControl, contentLanguage, customMetadata, ...data }
+        } = response
 
         return data
       }
     }
 
-    firebase.uploadFile(PATH, file, PATH, options)
+    firebase
+      .uploadFile(PATH, file, PATH, options)
       .catch(result => console.log(result))
 
     return true
   }
-})
+}
 
 const mapStateToProps = state => state
 

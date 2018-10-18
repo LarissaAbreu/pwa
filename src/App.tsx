@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { compose } from 'recompose'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from './theme'
 
 import Landing from './pages/Landing'
-import Settings from './pages/Preferences'
+import Preferences from './pages/Preferences'
 
 import NewSpot from './pages/spots/new/NewSpot'
 import AnalyzeSpots from './pages/spots/AnalyzeSpots'
@@ -22,29 +22,36 @@ import Event from './Event'
 
 Container.add('event', Event.getInstance())
 
-const Containers = Component => compose(AuthenticationContainer, DependenciesContainer)(Component)
+const Composing = Component =>
+  compose(
+    AuthenticationContainer,
+    DependenciesContainer
+  )(Component)
 
-const MainWithDependencies = Containers(Main)
+const MainWithDependencies = Composing(Main)
 const LandingWithDependencies = DependenciesContainer(Landing)
 
-const AnalyzeSpotsWithContainers = compose(RoleContainer, Containers)(AnalyzeSpots)
+const AnalyzeSpotsWithContainers = compose(
+  RoleContainer,
+  Composing
+)(AnalyzeSpots)
 
-const NewSpotWithContainers = Containers(NewSpot)
-const ListSpotsWithContainers = Containers(ListSpots)
+const NewSpotWithContainers = Composing(NewSpot)
+const ListSpotsWithContainers = Composing(ListSpots)
 
-const SettingsAuthenticated = AuthenticationContainer(Settings)
+const SettingsAuthenticated = AuthenticationContainer(Preferences)
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={LandingWithDependencies} />
+        <Route exact={true} path="/" component={LandingWithDependencies} />
 
         <MainWithDependencies>
-          <Route path='/settings' component={SettingsAuthenticated} />
-          <Route path='/spots/list' component={ListSpotsWithContainers} />
-          <Route path='/spots/new' component={NewSpotWithContainers} />
-          <Route path='/spots/analyze' component={AnalyzeSpotsWithContainers} />
+          <Route path="/settings" component={SettingsAuthenticated} />
+          <Route path="/spots/list" component={ListSpotsWithContainers} />
+          <Route path="/spots/new" component={NewSpotWithContainers} />
+          <Route path="/spots/analyze" component={AnalyzeSpotsWithContainers} />
         </MainWithDependencies>
       </Switch>
     </BrowserRouter>

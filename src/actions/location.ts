@@ -1,7 +1,4 @@
-import {
-  LOCATION_FETCHED,
-  LOCATION_NOT_FETCHED
-} from '../constants'
+import { LOCATION_FETCHED, LOCATION_NOT_FETCHED } from '../constants'
 
 export const fetchLocation = () => {
   const geolocation = navigator.geolocation
@@ -11,11 +8,10 @@ export const fetchLocation = () => {
       reject(new Error('Not Supported'))
     }
 
-    geolocation
-      .getCurrentPosition(
-        position => resolve(position),
-        error => reject(new Error(`Error, ${error}`))
-      )
+    geolocation.getCurrentPosition(
+      position => resolve(position),
+      error => reject(new Error(`Error, ${error}`))
+    )
   })
 
   return dispatch => {

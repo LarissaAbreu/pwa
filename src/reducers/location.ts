@@ -1,13 +1,13 @@
-import {
-  LOCATION_NOT_FETCHED,
-  LOCATION_FETCHED
-} from '../constants'
+import { LOCATION_NOT_FETCHED, LOCATION_FETCHED } from '../constants'
 
-const initialState = {
+export type LocationState = {}
 
-}
+const initialState = {}
 
-export function location(state = initialState, { payload, type }) {
+export function location(
+  state: LocationState = initialState,
+  { payload, type }
+): LocationState {
   switch (type) {
     case LOCATION_FETCHED:
       const { coords } = payload

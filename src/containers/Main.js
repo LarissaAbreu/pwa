@@ -49,7 +49,13 @@ class Main extends React.Component {
 
     return (
       <MainWrapper>
-        {isMenuVisible && <Menu toggleMenu={this.toggleMenu} firebase={firebase} history={history} />}
+        {isMenuVisible && (
+          <Menu
+            toggleMenu={this.toggleMenu}
+            firebase={firebase}
+            history={history}
+          />
+        )}
 
         <Content>
           <Bar>

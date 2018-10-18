@@ -1,11 +1,13 @@
+import { Actionable } from './types'
+
 import {
-  INIT_AUTH,
   SIGN_IN_ERROR,
   SIGN_IN_SUCCESS,
-  SIGN_OUT_SUCCESS
+  SIGN_OUT_SUCCESS,
+  SIGN_OUT_ERROR
 } from '../constants'
 
-export const signInWithFacebook = firebase => {
+export const signInWithSocial = firebase => {
   return dispatch => {
     firebase
       .login({ provider: 'facebook', type: 'popup' })
@@ -14,21 +16,14 @@ export const signInWithFacebook = firebase => {
   }
 }
 
-export const initAuth = user => {
-  return {
-    type: INIT_AUTH,
-    payload: user
-  }
-}
-
-export const signInError = error => {
+const signInError = (error): Actionable<any> => {
   return {
     type: SIGN_IN_ERROR,
     payload: error
   }
 }
 
-export const signInSuccess = result => {
+const signInSuccess = (result): Actionable<any> => {
   return {
     type: SIGN_IN_SUCCESS,
     payload: result
@@ -37,13 +32,23 @@ export const signInSuccess = result => {
 
 export const signOut = firebase => {
   return dispatch => {
-    firebase.logout()
+    firebase
+      .logout()
       .then(() => dispatch(signOutSuccess()))
+      .catch(() => dispatch(signOutError()))
   }
 }
 
-export const signOutSuccess = () => {
+const signOutSuccess = (): Actionable<any> => {
   return {
-    type: SIGN_OUT_SUCCESS
+    type: SIGN_OUT_SUCCESS,
+    payload: ''
+  }
+}
+
+const signOutError = (): Actionable<any> => {
+  return {
+    type: SIGN_OUT_ERROR,
+    payload: ''
   }
 }

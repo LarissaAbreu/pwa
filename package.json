@@ -3,14 +3,14 @@
   "version": "2.0.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.2.0",
+    "firebase": "^5.5.4",
     "leaflet": "^1.3.4",
     "localforage": "^1.7.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-leaflet": "^2.0.1",
     "react-redux": "^5.0.7",
-    "react-redux-firebase": "^2.1.6",
+    "react-redux-firebase": "^2.1.8",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^1.1.5",
@@ -20,8 +20,9 @@
     "redux-persist": "^5.10.0",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.3.0",
-    "wolfy87-eventemitter": "^5.2.5",
-    "styled-components": "^3.4.5"
+    "styled-components": "^3.4.5",
+    "typescript": "^3.1.3",
+    "wolfy87-eventemitter": "^5.2.5"
   },
   "scripts": {
     "docz:dev": "docz dev",
@@ -31,8 +32,22 @@
     "deploy": "react-app-rewired build && firebase deploy --only hosting"
   },
   "devDependencies": {
+    "@types/history": "^4.7.2",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-leaflet": "^1.1.6",
+    "@types/react-redux": "^6.0.9",
+    "@types/react-router": "^4.0.32",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/recompose": "^0.27.0",
     "docz": "^0.11.0",
     "react-app-rewire-styled-components": "^3.0.2",
-    "react-app-rewired": "^1.6.2"
+    "react-app-rewire-typescript": "^2.0.2",
+    "react-app-rewired": "^1.6.2",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-react": "^3.6.0"
   }
 }
