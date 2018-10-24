@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Button from '../../../components/Button'
+import Button from '../../../components/Button/index'
 import Input from '../../../components/Input'
 import Radio from '../../../components/Radio'
 import Checkbox from '../../../components/Checkbox'

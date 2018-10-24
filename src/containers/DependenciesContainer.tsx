@@ -1,13 +1,14 @@
 import { compose } from 'recompose'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { withFirebase } from 'react-redux-firebase'
+import {ComponentType} from "react";
 
-type DependenciesProps = RouteComponentProps
+type DependenciesProps<P> = RouteComponentProps<P>
 
 const DependenciesContainer = <P extends object>(
-  Component: React.ComponentType<P>
+  Component: ComponentType<P>
 ) => {
-  return compose<P, P & DependenciesProps>(
+  return compose<P, DependenciesProps<P>>(
     withFirebase,
     withRouter
   )(Component)

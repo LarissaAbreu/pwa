@@ -1,4 +1,4 @@
-import { LOCATION_NOT_FETCHED, LOCATION_FETCHED } from '../constants'
+import {ActionType} from "../ActionType";
 
 export type LocationState = {}
 
@@ -9,13 +9,13 @@ export function location(
   { payload, type }
 ): LocationState {
   switch (type) {
-    case LOCATION_FETCHED:
+    case ActionType.LOCATION_FETCHED:
       const { coords } = payload
       return {
         ...state,
         coords
       }
-    case LOCATION_NOT_FETCHED:
+    case ActionType.LOCATION_NOT_FETCHED:
       return initialState
     default:
       return {

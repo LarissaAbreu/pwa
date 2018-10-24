@@ -1,6 +1,5 @@
-import { CENTER_WAS_RECORDED } from '../constants'
-
 import { SpotAction } from '../actions/spot'
+import {ActionType} from "../ActionType";
 
 export type SpotState = {
   latitude?: number
@@ -17,7 +16,7 @@ export function spot(
   const { type, payload } = action
 
   switch (type) {
-    case CENTER_WAS_RECORDED:
+    case ActionType.CENTER_WAS_RECORDED:
       const { latitude, longitude, zoom } = payload
       return {
         ...state,

@@ -1,15 +1,15 @@
 import * as React from 'react'
-
 import { connect } from 'react-redux'
-import { AuthProps } from './types'
-import { RouteComponentProps } from 'react-router'
 
-type RoleState = RouteComponentProps & AuthProps
+import {DependenciesContainerType} from '../types'
+import {ComponentType} from "react";
+
+type RoleState = DependenciesContainerType
 
 type RoleProps = RoleState
 
-const RoleContainer = (Component: React.ComponentType<RoleProps>) => {
-  class Role extends React.Component<RoleProps> {
+const RoleContainer = (Component: ComponentType<RoleProps>) => {
+  class Role extends React.Component<RoleProps, RoleState> {
     componentDidMount(): void {
       const { auth, history } = this.props
 

@@ -1,6 +1,5 @@
-import { CENTER_WAS_RECORDED } from '../constants'
-
 import { Actionable } from './types'
+import {ActionType} from "../ActionType";
 
 type Coords = {
   latitude: number
@@ -14,7 +13,7 @@ export const recordCenter = (coords: Coords): SpotAction => {
   const { latitude, longitude, zoom } = coords
 
   return {
-    type: CENTER_WAS_RECORDED,
+    type: ActionType.CENTER_WAS_RECORDED,
     payload: {
       latitude,
       longitude,

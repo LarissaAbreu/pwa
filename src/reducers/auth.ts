@@ -1,4 +1,4 @@
-import { SIGN_OUT_SUCCESS, SIGN_IN_SUCCESS } from '../constants'
+import {ActionType} from "../ActionType";
 
 export type AuthState = {
   authenticated: boolean
@@ -17,7 +17,7 @@ export function auth(
   { type, payload }
 ): AuthState {
   switch (type) {
-    case SIGN_IN_SUCCESS:
+    case ActionType.SIGN_IN_SUCCESS:
       const { user, profile } = payload
 
       return {
@@ -27,7 +27,7 @@ export function auth(
         id: user.uid
       }
 
-    case SIGN_OUT_SUCCESS:
+    case ActionType.SIGN_OUT_SUCCESS:
       return initialState
 
     default:

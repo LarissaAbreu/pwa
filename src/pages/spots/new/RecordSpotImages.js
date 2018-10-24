@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Button from '../../../components/Button'
+import Button from '../../../components/Button/index'
 import Upload from '../../../components/Upload'
 
 import RecordWrapper from './ui/RecordWrapper'

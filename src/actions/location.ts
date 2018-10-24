@@ -1,4 +1,6 @@
-import { LOCATION_FETCHED, LOCATION_NOT_FETCHED } from '../constants'
+import {ActionType} from "../ActionType";
+import {Actionable} from "./types";
+import {Dispatch} from "redux";
 
 export const fetchLocation = () => {
   const geolocation = navigator.geolocation
@@ -14,23 +16,19 @@ export const fetchLocation = () => {
     )
   })
 
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     location
       .then(result => dispatch(locationFetched(result)))
       .catch(result => dispatch(locationNotFetched(result)))
   }
 }
 
-const locationFetched = result => {
-  return {
-    type: LOCATION_FETCHED,
-    payload: result
-  }
-}
+const locationFetched = (result): Actionable<any> => ({
+  type: ActionType.LOCATION_FETCHED,
+  payload: result
+})
 
-const locationNotFetched = result => {
-  return {
-    type: LOCATION_NOT_FETCHED,
-    payload: result
-  }
-}
+const locationNotFetched = (result): Actionable<any> => ({
+  type: ActionType.LOCATION_NOT_FETCHED,
+  payload: result
+})

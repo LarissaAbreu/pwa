@@ -1,14 +1,20 @@
+import { ActionType } from '../ActionType'
 import { Actionable } from './types'
+import { Dispatch } from "redux";
+import { ThunkAction } from 'redux-thunk'
+import {LandingState} from "../pages/Landing";
 
-import {
-  SIGN_IN_ERROR,
-  SIGN_IN_SUCCESS,
-  SIGN_OUT_SUCCESS,
-  SIGN_OUT_ERROR
-} from '../constants'
+type SignInError = ''
+type SignInSuccess = ''
 
-export const signInWithSocial = firebase => {
-  return dispatch => {
+export type Signed = SignInSuccess | SignInError
+
+type Result<R> = ThunkAction<R, LandingState, undefined, Actionable<() => void>>
+
+export const signInWithSocial = (
+  firebase
+): Result<void> => {
+  return (dispatch: Dispatch<Actionable<Signed>>) => {
     firebase
       .login({ provider: 'facebook', type: 'popup' })
       .then(result => dispatch(signInSuccess(result)))
@@ -16,22 +22,8 @@ export const signInWithSocial = firebase => {
   }
 }
 
-const signInError = (error): Actionable<any> => {
-  return {
-    type: SIGN_IN_ERROR,
-    payload: error
-  }
-}
-
-const signInSuccess = (result): Actionable<any> => {
-  return {
-    type: SIGN_IN_SUCCESS,
-    payload: result
-  }
-}
-
 export const signOut = firebase => {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     firebase
       .logout()
       .then(() => dispatch(signOutSuccess()))
@@ -39,16 +31,22 @@ export const signOut = firebase => {
   }
 }
 
-const signOutSuccess = (): Actionable<any> => {
-  return {
-    type: SIGN_OUT_SUCCESS,
-    payload: ''
-  }
-}
+const signInError = (result): Actionable<SignInError> => ({
+  type: ActionType.SIGN_IN_ERROR,
+  payload: result
+})
 
-const signOutError = (): Actionable<any> => {
-  return {
-    type: SIGN_OUT_ERROR,
-    payload: ''
-  }
-}
+const signInSuccess = (result): Actionable<SignInSuccess> => ({
+  type: ActionType.SIGN_IN_SUCCESS,
+  payload: result
+})
+
+const signOutSuccess = (): Actionable<any> => ({
+  type: ActionType.SIGN_OUT_SUCCESS,
+  payload: ''
+})
+
+const signOutError = (): Actionable<any> => ({
+  type: ActionType.SIGN_OUT_ERROR,
+  payload: ''
+})

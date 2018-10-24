@@ -1,5 +1,7 @@
-import { Action } from 'redux'
+import * as Redux from 'redux'
+import {ActionType} from "../ActionType";
 
-export interface Actionable<P> extends Action {
+export interface Actionable<P> extends Redux.Action {
+  type: ActionType
   payload: P
 }

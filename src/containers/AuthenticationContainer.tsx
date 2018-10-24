@@ -1,25 +1,17 @@
 import * as React from 'react'
-
 import { connect } from 'react-redux'
-import { ComponentType } from './types'
-import { AuthState } from '../reducers/auth'
 
-type AuthenticationState = {
-  auth: AuthState
-  history: any
-}
+import { DependenciesContainerType } from '../types'
 
+type AuthenticationState = DependenciesContainerType
 type AuthenticationProps = AuthenticationState
 
-type ComponentAuthenticated = ComponentType
+type ComponentAuthenticated = React.ComponentType
 
-const AuthenticationContainer = (
-  Component: ComponentType
+const AuthenticationContainer = <P extends object>(
+  Component: ComponentAuthenticated
 ): ComponentAuthenticated => {
-  class Authentication extends React.Component<
-    AuthenticationProps,
-    AuthenticationState
-  > {
+  class Authentication extends React.Component<AuthenticationProps, AuthenticationState> {
     componentDidMount(): void {
       const { auth, history } = this.props
 
@@ -35,7 +27,7 @@ const AuthenticationContainer = (
     }
   }
 
-  const mapStateToProps = (state: AuthenticationState) => state
+  const mapStateToProps = (state: AuthenticationState): AuthenticationState => state
 
   return connect(mapStateToProps)(Authentication)
 }

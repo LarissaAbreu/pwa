@@ -6,7 +6,7 @@ import { withHandlers, compose } from 'recompose'
 import icons from '../../../icons'
 
 import Icon from '../../../components/Icon'
-import Button from '../../../components/Button'
+import Button from '../../../components/Button/index'
 import Modal from '../../../components/Modal'
 
 import RecordSpotData from './RecordSpotData'
