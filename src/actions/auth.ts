@@ -1,19 +1,33 @@
 import { ActionType } from '../ActionType'
 import { Actionable } from './types'
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import {LandingState} from "../pages/Landing";
+import { LandingState } from '../pages/Landing'
 
 type SignInError = ''
 type SignInSuccess = ''
 
+type SignOutError = ''
+type SignOutSuccess = ''
+
 export type Signed = SignInSuccess | SignInError
 
-type Result<R> = ThunkAction<R, LandingState, undefined, Actionable<() => void>>
+export type SignOut = SignOutSuccess | SignOutError
 
-export const signInWithSocial = (
-  firebase
-): Result<void> => {
+type SignInResult<R> = ThunkAction<
+  R,
+  LandingState,
+  undefined,
+  Actionable<() => void>
+>
+type SignOutResult<R> = ThunkAction<
+  R,
+  LandingState,
+  undefined,
+  Actionable<() => void>
+>
+
+export const signInWithSocial = (firebase): SignInResult<void> => {
   return (dispatch: Dispatch<Actionable<Signed>>) => {
     firebase
       .login({ provider: 'facebook', type: 'popup' })
@@ -22,8 +36,8 @@ export const signInWithSocial = (
   }
 }
 
-export const signOut = firebase => {
-  return (dispatch: Dispatch) => {
+export const signOut = (firebase): SignOutResult<void> => {
+  return (dispatch: Dispatch<Actionable<SignOut>>) => {
     firebase
       .logout()
       .then(() => dispatch(signOutSuccess()))
@@ -41,12 +55,12 @@ const signInSuccess = (result): Actionable<SignInSuccess> => ({
   payload: result
 })
 
-const signOutSuccess = (): Actionable<any> => ({
+const signOutSuccess = (): Actionable<SignOutSuccess> => ({
   type: ActionType.SIGN_OUT_SUCCESS,
   payload: ''
 })
 
-const signOutError = (): Actionable<any> => ({
+const signOutError = (): Actionable<SignOutError> => ({
   type: ActionType.SIGN_OUT_ERROR,
   payload: ''
 })

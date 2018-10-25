@@ -1,13 +1,13 @@
-import {ActionType} from "../ActionType";
+import { ActionType } from '../ActionType'
 
 export type LocationState = {}
 
-const initialState = {}
+const initialState: LocationState = {}
 
-export function location(
+export const location = (
   state: LocationState = initialState,
   { payload, type }
-): LocationState {
+): LocationState => {
   switch (type) {
     case ActionType.LOCATION_FETCHED:
       const { coords } = payload

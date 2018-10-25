@@ -5,11 +5,15 @@ import { auth, AuthState } from './auth'
 import { location, LocationState } from './location'
 import { spot, SpotState } from './spot'
 
+export type ApiState = {
+  profile
+}
+
 export interface ApplicationState {
   auth: AuthState
   location: LocationState
   spot: SpotState
-  api?
+  api: ApiState
 }
 
 const reducers: Reducer<ApplicationState> = combineReducers<ApplicationState>({

@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { compose } from 'recompose'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
 
-import theme from './theme'
+import { ThemeProvider, theme } from './theme'
 
 import Landing from './pages/Landing'
 import Preferences from './pages/Preferences'

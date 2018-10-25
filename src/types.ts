@@ -1,9 +1,15 @@
 import { AuthState } from './reducers/auth'
-import {RouteComponentProps} from "react-router";
+import { RouteComponentProps } from 'react-router'
+import { ApiState } from './reducers'
 
 export type AuthProps = {
   auth: AuthState
 }
 
-export type DependenciesContainerType = RouteComponentProps & AuthProps
+export type ApiProps = {
+  api: ApiState
+}
 
+export type DependenciesContainerType = RouteComponentProps &
+  AuthProps &
+  ApiProps

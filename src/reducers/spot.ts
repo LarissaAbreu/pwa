@@ -1,5 +1,5 @@
 import { SpotAction } from '../actions/spot'
-import {ActionType} from "../ActionType";
+import { ActionType } from '../ActionType'
 
 export type SpotState = {
   latitude?: number
@@ -7,12 +7,12 @@ export type SpotState = {
   zoom?: number
 }
 
-const initialState = {}
+const initialState: SpotState = {}
 
-export function spot(
+export const spot = (
   state: SpotState = initialState,
   action: SpotAction
-): SpotState {
+): SpotState => {
   const { type, payload } = action
 
   switch (type) {

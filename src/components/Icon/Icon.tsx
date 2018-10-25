@@ -1,4 +1,8 @@
-import styled from 'styled-components'
+import { styled } from '../../theme'
+
+type Props = {
+  icon: string
+}
 
 const Icon = styled.span`
   font-family: 'icomoon' !important;
@@ -12,7 +16,7 @@ const Icon = styled.span`
   -moz-osx-font-smoothing: grayscale;
 
   &::before {
-    content: "\\${props => props.icon}";
+    content: "\\${(props: Props) => props.icon}";
   }
 `
 

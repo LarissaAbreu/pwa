@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components'
+import { styled, css } from '../../theme'
 
 type Sizes = 'large' | 'medium' | 'small'
 
@@ -25,7 +25,8 @@ const map = {
   medium,
   small
 }
-const Button = styled<Props, 'button'>('button')`
+
+const Button = styled.button`
   font-size: 14px;
   letter-spacing: 1px;
   border: none;
@@ -36,7 +37,7 @@ const Button = styled<Props, 'button'>('button')`
   cursor: pointer;
   background: ${props => props.theme.combinations[props.color].background};
   color: ${props => props.theme.combinations[props.color].color};
-  ${(props: Props) => map[props.size]}
+  ${(props: Props) => map[props.size]};
 `
 
 export default Button

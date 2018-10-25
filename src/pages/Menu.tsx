@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from '../theme'
 
 import icons from '../icons'
 import Icon from '../components/Icon'
-import { signOut } from '../actions/auth'
+import { signOut, SignOut } from '../actions/auth'
+import { DependenciesContainerType } from '../types'
+import { Dispatch } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { Actionable } from '../actions/types'
 
 const Header = styled.div`
   text-align: center;
@@ -54,15 +58,35 @@ const IconWraper = styled(Icon)`
   vertical-align: middle;
 `
 
-class Menu extends Component {
-  signOut = () => {
+type MenuActions = {
+  signOut: () => void
+}
+
+interface MenuProps extends DependenciesContainerType, MenuActions {
+  toggleMenu: () => void
+}
+
+export type MenuState = MenuProps
+
+export type MenuDispatch = ThunkDispatch<
+  MenuState,
+  undefined,
+  Actionable<SignOut>
+>
+
+class Menu extends React.Component<MenuProps, MenuState> {
+  signOut = (): void => {
     const { signOut, history } = this.props
 
     signOut()
   }
 
-  render() {
-    const { toggleMenu, auth, api: { profile }} = this.props
+  render(): React.ReactNode {
+    const {
+      toggleMenu,
+      auth,
+      api: { profile }
+    } = this.props
 
     return (
       <Wrapper>
@@ -77,13 +101,12 @@ class Menu extends Component {
           Todos os picos
         </LinkWrapper>
 
-        {
-          auth.isAdmin &&
+        {auth.isAdmin && (
           <LinkWrapper to="/spots/analyze" onClick={toggleMenu}>
             <IconWraper icon={icons.configuration} />
             Analisar pico
           </LinkWrapper>
-        }
+        )}
 
         <LinkWrapper to="/spots/new" onClick={toggleMenu}>
           <IconWraper icon={icons.plus} />
@@ -109,13 +132,23 @@ class Menu extends Component {
   }
 }
 
-const mapActionsToProps = (dispatch, { firebase }) => ({
+const mapActionsToProps = (
+  dispatch: MenuDispatch,
+  { firebase }
+): MenuActions => ({
   signOut: () => dispatch(signOut(firebase))
 })
 
-const mapStateToProps = ({ api, auth }) => ({
+const mapStateToProps = ({
+  api,
+  auth,
+  history
+}: DependenciesContainerType) => ({
   api,
   auth
 })
 
-export default connect(mapStateToProps, mapActionsToProps)(Menu)
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(Menu)

@@ -1,21 +1,21 @@
-import {ActionType} from "../ActionType";
+import { ActionType } from '../ActionType'
 
 export type AuthState = {
   authenticated: boolean
   isAdmin: boolean
-  id?: string
+  id: string | null
 }
 
-const initialState = {
+const initialState: AuthState = {
   authenticated: false,
   isAdmin: false,
   id: null
 }
 
-export function auth(
+export const auth = (
   state: AuthState = initialState,
   { type, payload }
-): AuthState {
+): AuthState => {
   switch (type) {
     case ActionType.SIGN_IN_SUCCESS:
       const { user, profile } = payload

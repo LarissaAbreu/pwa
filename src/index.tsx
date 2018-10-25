@@ -1,15 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
-import { injectGlobal } from 'styled-components'
 
 import registerServiceWorker from './registerServiceWorker'
 import App from './App'
 
 import { store, persistedStore } from './store'
 
-import icomoon from './statics/fonts/icomoon.woff'
+import * as icomoon from './statics/fonts/icomoon.woff'
+import { injectGlobal } from './theme'
 
 injectGlobal`
   @font-face {
