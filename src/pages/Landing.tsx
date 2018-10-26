@@ -2,7 +2,7 @@ import * as React from 'react'
 import { ThunkDispatch } from 'redux-thunk'
 import { connect } from 'react-redux'
 
-import { Signed, signInWithSocial } from '../actions/auth'
+import { SignIn, signInWithSocial } from '../actions/auth'
 
 import Button from '../components/Button'
 
@@ -11,10 +11,10 @@ import { Actionable } from '../actions/types'
 
 import * as background from '../../src/statics/images/2.jpg'
 import * as spot from '../../src/statics/images/4.jpg'
+import * as logo from '../../src/statics/images/logo.svg'
 
 import { styled, css } from '../theme'
 import Container from '../components/Shared/Container'
-import { MenuState } from './Menu'
 
 type LandingActions = {
   signInWithSocial: () => void
@@ -25,26 +25,26 @@ type LandingProps = LandingActions & DependenciesContainerType
 export type LandingState = LandingProps
 
 export type LandingDispatch = ThunkDispatch<
-  MenuState,
+  LandingState,
   undefined,
-  Actionable<Signed>
+  Actionable<SignIn>
 >
 
 const Home = styled.div`
   width: 100%;
   height: 100vh;
+`
+
+const Background = styled.div`
+  top: 50%;
+  left: 40%;
+  width: 60%;
+  height: 80vh;
+  position: absolute;
   background: url(${background});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-`
-
-const Title = styled.h1`
-  max-width: 500px;
-  font-weight: 700;
-  color: ${props => props.theme.colors.primary};
-  font-size: 54px;
-  letter-spacing: 1px;
 `
 
 const Logo = styled.img`
@@ -52,16 +52,35 @@ const Logo = styled.img`
 `
 
 const Header = styled.div`
+  ${Container};
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
+`
+
+const Title = styled.h1`
+  padding-top: 40px;
+  padding-left: 50px;
+  max-width: 700px;
+  font-weight: 700;
+  color: ${props => props.theme.colors.secondary};
+  font-size: 45px;
+  letter-spacing: 1px;
+`
+
+const Body = styled.div`
   ${Container};
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  height: calc(100% - 100px);
 `
 
 const Spots = styled.div`
   width: 100%;
   height: 100vh;
+  background: ${props => props.theme.colors.secondary};
   display: flex;
   ${Container};
 `
@@ -71,14 +90,6 @@ const Spot = css`
   max-width: 50%;
   margin-top: 50px;
   margin-bottom: 50px;
-`
-
-const SpotImage = styled.img`
-  background-image: url(${spot});
-  background-size: cover;
-  background-position: center;
-  margin-right: 50px;
-  ${Spot};
 `
 
 const SpotExplanation = styled.div`
@@ -118,29 +129,26 @@ class Landing extends React.Component<LandingProps, LandingState> {
     return (
       <React.Fragment>
         <Home>
-          <Title>
-            Em breve, encontre e compartilhe novos picos para sua sessão.
-          </Title>
-
           <Header>
-            <Logo
-              className="home__logo"
-              src="../static/images/logo.svg"
-              alt="Ondetempico"
-            />
+            <Logo src={logo} alt="Ondetempico" />
+
             <Button
-              color="secondary"
+              color="primary"
               size="medium"
               onClick={this.props.signInWithSocial}
             >
               Entrar
             </Button>
           </Header>
+
+          <Body>
+            <Title>Encontre e compartilhe novos picos para sua sessão.</Title>
+          </Body>
+
+          <Background />
         </Home>
 
         <Spots>
-          <SpotImage />
-
           <SpotExplanation>
             <SpotTitle>Encontre diversos picos</SpotTitle>
 

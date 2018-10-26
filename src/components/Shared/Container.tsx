@@ -6,7 +6,8 @@ const Container = css`
   margin: 0 auto;
 
   @media (max-width: 1024px) {
-    padding: 0 15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `
 

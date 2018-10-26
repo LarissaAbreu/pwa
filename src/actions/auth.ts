@@ -3,6 +3,7 @@ import { Actionable } from './types'
 import { Dispatch } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { LandingState } from '../pages/Landing'
+import { MenuState } from '../pages/Menu'
 
 type SignInError = ''
 type SignInSuccess = ''
@@ -10,7 +11,7 @@ type SignInSuccess = ''
 type SignOutError = ''
 type SignOutSuccess = ''
 
-export type Signed = SignInSuccess | SignInError
+export type SignIn = SignInSuccess | SignInError
 
 export type SignOut = SignOutSuccess | SignOutError
 
@@ -20,15 +21,16 @@ type SignInResult<R> = ThunkAction<
   undefined,
   Actionable<() => void>
 >
+
 type SignOutResult<R> = ThunkAction<
   R,
-  LandingState,
+  MenuState,
   undefined,
   Actionable<() => void>
 >
 
 export const signInWithSocial = (firebase): SignInResult<void> => {
-  return (dispatch: Dispatch<Actionable<Signed>>) => {
+  return (dispatch: Dispatch<Actionable<SignIn>>) => {
     firebase
       .login({ provider: 'facebook', type: 'popup' })
       .then(result => dispatch(signInSuccess(result)))

@@ -7,7 +7,6 @@ import icons from '../icons'
 import Icon from '../components/Icon'
 import { signOut, SignOut } from '../actions/auth'
 import { DependenciesContainerType } from '../types'
-import { Dispatch } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import { Actionable } from '../actions/types'
 

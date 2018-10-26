@@ -1,10 +1,11 @@
 import { styled, css } from '../../theme'
 
 type Sizes = 'large' | 'medium' | 'small'
+type Colors = 'primary' | 'secondary'
 
 type Props = {
   size: Sizes
-  color: string
+  color: Colors
 }
 
 const large = css`
