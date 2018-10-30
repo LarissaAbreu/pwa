@@ -10,6 +10,12 @@ export type ApiProps = {
   api: ApiState
 }
 
+export type Coords = {
+  latitude: number
+  longitude: number
+  zoom: number
+}
+
 export type DependenciesContainerType = RouteComponentProps &
   AuthProps &
   ApiProps

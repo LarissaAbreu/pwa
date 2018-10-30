@@ -1,34 +1,50 @@
-import {ActionType} from "../ActionType";
-import {Actionable} from "./types";
-import {Dispatch} from "redux";
+import { Dispatch } from 'redux'
 
-export const fetchLocation = () => {
-  const geolocation = navigator.geolocation
+import { ActionType } from '../ActionType'
+import { Actionable } from './types'
+import { ThunkAction } from 'redux-thunk'
+
+export type LocationFetched = {
+  latitude: number
+  longitude: number
+}
+
+type Location = LocationFetched | string
+type LocationResult<R> = ThunkAction<R, void, undefined, Actionable<() => void>>
+
+export const fetchLocation = (): LocationResult<void> => {
+  const { geolocation } = navigator
 
   const location = new Promise((resolve, reject) => {
     if (!geolocation) {
-      reject(new Error('Not Supported'))
+      reject('Problemas ao obter a localização.')
     }
 
     geolocation.getCurrentPosition(
       position => resolve(position),
-      error => reject(new Error(`Error, ${error}`))
+      error => reject(`Problemas ao obter localização, ${error}`)
     )
   })
 
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch<Actionable<Location>>) => {
     location
-      .then(result => dispatch(locationFetched(result)))
-      .catch(result => dispatch(locationNotFetched(result)))
+      .then(({ coords }) => {
+        const { longitude, latitude }: LocationFetched = coords
+
+        dispatch(locationFetched({ latitude, longitude }))
+      })
+      .catch((result: string) => dispatch(locationNotFetched(result)))
   }
 }
 
-const locationFetched = (result): Actionable<any> => ({
-  type: ActionType.LOCATION_FETCHED,
-  payload: result
+const locationFetched = (
+  payload: LocationFetched
+): Actionable<LocationFetched> => ({
+  payload,
+  type: ActionType.LOCATION_FETCHED
 })
 
-const locationNotFetched = (result): Actionable<any> => ({
-  type: ActionType.LOCATION_NOT_FETCHED,
-  payload: result
+const locationNotFetched = (payload: string): Actionable<string> => ({
+  payload,
+  type: ActionType.LOCATION_NOT_FETCHED
 })

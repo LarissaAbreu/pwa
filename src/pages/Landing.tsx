@@ -16,19 +16,15 @@ import * as logo from '../../src/statics/images/logo.svg'
 import { styled, css } from '../theme'
 import Container from '../components/Shared/Container'
 
-type LandingActions = {
+type Actions = {
   signInWithSocial: () => void
 }
 
-type LandingProps = LandingActions & DependenciesContainerType
+type Props = Actions & DependenciesContainerType
 
-export type LandingState = LandingProps
+export type State = Props
 
-export type LandingDispatch = ThunkDispatch<
-  LandingState,
-  undefined,
-  Actionable<SignIn>
->
+export type Dispatch = ThunkDispatch<State, undefined, Actionable<SignIn>>
 
 const Home = styled.div`
   width: 100%;
@@ -71,9 +67,6 @@ const Title = styled.h1`
 
 const Body = styled.div`
   ${Container};
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
   height: calc(100% - 100px);
 `
 
@@ -108,7 +101,7 @@ const SpotDescription = styled.p`
   margin-bottom: 20px;
 `
 
-class Landing extends React.Component<LandingProps, LandingState> {
+class Landing extends React.Component<Props, State> {
   componentDidMount(): void {
     const { history, auth } = this.props
 
@@ -183,14 +176,11 @@ class Landing extends React.Component<LandingProps, LandingState> {
   }
 }
 
-const mapActionsToProps = (
-  dispatch: LandingDispatch,
-  { firebase }
-): LandingActions => ({
+const mapActionsToProps = (dispatch: Dispatch, { firebase }): Actions => ({
   signInWithSocial: () => dispatch(signInWithSocial(firebase))
 })
 
-const mapStateToProps = (state: LandingState): LandingState => state
+const mapStateToProps = (state: State): State => state
 
 export default connect(
   mapStateToProps,

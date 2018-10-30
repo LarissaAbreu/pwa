@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from '../../../../theme'
 
 const WrapperSubtitle = styled.h3`
   margin-top: 20px;

@@ -2,7 +2,7 @@ import { combineReducers, Reducer } from 'redux'
 
 import { firebaseReducer } from 'react-redux-firebase'
 import { auth, AuthState } from './auth'
-import { location, LocationState } from './location'
+import { geolocation, LocationState } from './location'
 import { spot, SpotState } from './spot'
 
 export type ApiState = {
@@ -11,14 +11,14 @@ export type ApiState = {
 
 export interface ApplicationState {
   auth: AuthState
-  location: LocationState
+  geolocation: LocationState
   spot: SpotState
   api: ApiState
 }
 
 const reducers: Reducer<ApplicationState> = combineReducers<ApplicationState>({
   auth,
-  location,
+  geolocation,
   spot,
   api: firebaseReducer
 })

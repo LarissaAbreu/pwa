@@ -2,12 +2,16 @@ import { SpotAction } from '../actions/spot'
 import { ActionType } from '../ActionType'
 
 export type SpotState = {
-  latitude?: number
-  longitude?: number
-  zoom?: number
+  latitude: number
+  longitude: number
+  zoom: number
 }
 
-const initialState: SpotState = {}
+const initialState: SpotState = {
+  latitude: 0,
+  longitude: 0,
+  zoom: 17
+}
 
 export const spot = (
   state: SpotState = initialState,

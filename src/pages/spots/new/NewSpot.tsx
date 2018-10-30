@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { withHandlers, compose } from 'recompose'
 
 import icons from '../../../icons'
 
 import Icon from '../../../components/Icon'
-import Button from '../../../components/Button/index'
+import Button from '../../../components/Button'
 import Modal from '../../../components/Modal'
 
 import RecordSpotData from './RecordSpotData'
 import RecordSpotImages from './RecordSpotImages'
 
 import LocationContainer from '../../../containers/LocationContainer'
+import { styled } from '../../../theme'
 
 const ConfirmButton = styled(Button)`
   position: absolute;
@@ -37,17 +37,33 @@ const Marker = styled(Icon)`
   font-size: 25px;
 `
 
-class NewSpot extends Component {
+type Actions = {
+  recordSpot: ({}) => boolean
+}
+
+type Props = {}
+
+interface State extends Props {
+  isRecordSpotDataVisible: boolean
+  isRecordSpotImagesVisible: boolean
+  isSpotRecorded: boolean
+  isSpotRecordPublished: boolean
+  data: {}
+}
+
+class NewSpot extends React.Component<Props & Actions, State> {
   state = {
     isRecordSpotDataVisible: false,
     isRecordSpotImagesVisible: false,
     isSpotRecorded: false,
+    isSpotRecordPublished: false,
     data: {}
   }
 
-  isModalSpotRecordadedVisible = () => {
-    this.setState(({ isSpotRecorded }) => ({
-      isSpotRecorded: !isSpotRecorded,
+  isModalSpotRecordadedVisible = isSpotRecorded => {
+    this.setState(({ isSpotRecordPublished }) => ({
+      isSpotRecorded,
+      isSpotRecordPublished: !isSpotRecordPublished,
       isRecordSpotImagesVisible: false
     }))
   }
@@ -56,7 +72,7 @@ class NewSpot extends Component {
    * @todo If spot is empty, display modal that we can't get position
    */
   recordSpotData = () => {
-    const { spot } = this.props
+    // const { spot } = this.props
 
     this.setState({
       isRecordSpotDataVisible: true
@@ -70,9 +86,11 @@ class NewSpot extends Component {
     const { upload } = event.target
     const [file] = upload.files
 
-    if (this.props.recordSpot({ ...data, file })) {
-      this.isModalSpotRecordadedVisible()
+    if (!this.props.recordSpot({ ...data, file })) {
+      return this.isModalSpotRecordadedVisible(false)
     }
+
+    this.isModalSpotRecordadedVisible(true)
   }
 
   formDataWasSubmited = event => {
@@ -97,19 +115,24 @@ class NewSpot extends Component {
     this.setState({ data })
   }
 
-  render() {
+  render(): React.ReactNode {
     const {
       isRecordSpotDataVisible,
       isRecordSpotImagesVisible,
+      isSpotRecordPublished,
       isSpotRecorded
     } = this.state
 
     return (
       <Wrapper>
-        {isSpotRecorded && (
+        {isSpotRecordPublished && (
           <Modal
             onClickButton={this.isModalSpotRecordadedVisible}
-            description="Pico cadastrado com sucesso!"
+            description={
+              isSpotRecorded
+                ? 'Pico cadastrado com sucesso!'
+                : 'Não foi possível cadastrar esse pico.'
+            }
           />
         )}
 
@@ -130,7 +153,7 @@ class NewSpot extends Component {
           Confirmar essa posição
         </ConfirmButton>
 
-        <LocationContainer event={this.event} className="new-spot__location" />
+        <LocationContainer className="new-spot__location" />
       </Wrapper>
     )
   }
@@ -139,14 +162,7 @@ class NewSpot extends Component {
 const mapHandlers = {
   recordSpot: ({ firebase, spot, auth }) => async data => {
     const { file } = data
-    const PATH = 'images'
-
-    // firebase.push('analyze', {
-    //   type: 'spots',
-    //   location: spot,
-    //   uid: auth.id,
-    //   data
-    // })
+    const PATH = `users/${auth.id}/spots`
 
     const options = {
       metadataFactory: response => {
@@ -158,11 +174,16 @@ const mapHandlers = {
       }
     }
 
-    firebase
-      .uploadFile(PATH, file, PATH, options)
-      .catch(result => console.log(result))
+    const upload = await firebase.uploadFile(PATH, file, PATH, options)
 
-    return true
+    const record = await firebase.push('analyze', {
+      data,
+      type: 'spots',
+      location: spot,
+      uid: auth.id
+    })
+
+    return upload && record
   }
 }
 

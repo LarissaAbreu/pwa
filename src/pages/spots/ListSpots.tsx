@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 
 import { connect } from 'react-redux'
 
@@ -6,7 +6,6 @@ import Loader from '../../components/Loader'
 
 import ListableSpot from '../../model/spots/ListableSpot'
 import FilledForm from '../../model/spots/FilledForm'
-import RecordableCenter from '../../model/spots/RecordableCenter'
 import ListableSpotCollection from '../../model/spots/ListableSpotCollection'
 
 import SpotMarker from './SpotMarker'
@@ -14,28 +13,25 @@ import SpotMarker from './SpotMarker'
 import { fetchLocation } from '../../actions/location'
 import LocationContainer from '../../containers/LocationContainer'
 
-class ListSpots extends Component {
-  constructor(props) {
-    super(props)
-
-    this.collection = new ListableSpotCollection()
-  }
-
-  componentDidMount() {
+class ListSpots extends React.Component {
+  componentDidMount(): void {
     this.props.fetchLocation()
     this.fetchSpots()
   }
 
-  fetchSpots() {
-    this.reference = this.props.firebase.database().ref('spots')
-    this.reference.on('value', spots => {
+  fetchSpots(): void {
+    const ref = this.props.firebase.database().ref('spots')
 
+    ref.on('value', spots => {
       if (!spots.val()) {
         return
       }
 
       Object.values(spots.val()).forEach(spot => {
-        const { location, data } = spot
+        const {
+          location: { zoom, latitude, longitude },
+          data
+        } = spot
         const { modalities } = data
 
         const filledForm = FilledForm.build(
@@ -46,26 +42,22 @@ class ListSpots extends Component {
           data.images
         )
 
-        const recordableCenter = RecordableCenter.build(
-          location.latitude,
-          location.longitude,
-          location.zoom
-        )
-
-        const listableSpot = ListableSpot.build(filledForm, recordableCenter)
-
-        this.collection.add(listableSpot)
+        const listableSpot = ListableSpot.build(filledForm, {
+          latitude,
+          longitude,
+          zoom
+        })
       })
     })
   }
 
-  render() {
+  render(): React.ReactNode {
     if (!this.collection.getList().length) {
       return <Loader text="Encontrando picos" />
     }
 
     return (
-      <LocationContainer isMarkerShown>
+      <LocationContainer>
         {this.collection.getList().forEach(spot => {
           return (
             <SpotMarker
@@ -76,10 +68,11 @@ class ListSpots extends Component {
               hasLongboard={spot.getData().hasLongboard()}
               images={spot.getData().getImages()}
               latitude={spot.getLocation().getLatitude()}
-              longitude={spot.getLocation().getLongitude()} />
+              longitude={spot.getLocation().getLongitude()}
+            />
           )
         })}
-      </ LocationContainer>
+      </LocationContainer>
     )
   }
 }
@@ -90,4 +83,7 @@ const mapActionsToProps = dispatch => ({
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, mapActionsToProps)(ListSpots)
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(ListSpots)

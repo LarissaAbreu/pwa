@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 
-import Button from '../../../components/Button/index'
+import Button from '../../../components/Button'
 import Upload from '../../../components/Upload'
 
 import RecordWrapper from './ui/RecordWrapper'
@@ -13,7 +13,7 @@ const RecordSpotImages = ({ onSubmit }) => (
   <RecordWrapper onSubmit={onSubmit}>
     <WrapperTitle>Adicione imagens do pico</WrapperTitle>
 
-    <Upload name="image" id="upload" label="Envie imagens do pico!" />
+    <Upload name="image" id="upload" text="Envie imagens do pico!" />
 
     <RecordImagesButton color="primary" size="large">
       Adicionar imagens

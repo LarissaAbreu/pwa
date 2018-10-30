@@ -2,7 +2,7 @@ import { ActionType } from '../ActionType'
 import { Actionable } from './types'
 import { Dispatch } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { LandingState } from '../pages/Landing'
+import { State as LandingState } from '../pages/Landing'
 import { MenuState } from '../pages/Menu'
 
 type SignInError = ''

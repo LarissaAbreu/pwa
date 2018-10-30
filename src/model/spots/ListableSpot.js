@@ -1,11 +1,6 @@
-import FilledForm from "./FilledForm";
-import RecordableCenter from "./RecordableCenter";
+import FilledForm from './FilledForm'
 
 class ListableSpot {
-
-  /**
-   * @type {RecordableCenter}
-   */
   location
 
   /**
@@ -15,25 +10,19 @@ class ListableSpot {
 
   /**
    * @param {FilledForm} data
-   * @param {RecordableCenter} location
    */
-  constructor (data, location) {
+  constructor(data, location) {
     this.data = data
     this.location = location
   }
 
-
   /**
    * @param {FilledForm} data
-   * @param {RecordableCenter} location
    */
   static build(data, location) {
     return new ListableSpot(data, location)
   }
 
-  /**
-   * @returns {RecordableCenter}
-   */
   getLocation() {
     return this.location
   }

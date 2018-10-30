@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-
 import Icon from '../../Icon'
+import { styled } from '../../../theme'
 
 const IconWrapper = styled(Icon)`
   top: 50%;

@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
+import { styled } from '../../theme'
 
 const Group = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ const Group = styled.div`
   margin-bottom: 10px;
 `
 
-const Field = styled.input`
+const Input = styled.input`
   width: 100%;
   padding: 0 5px;
   border: none;
@@ -42,13 +42,9 @@ const Label = styled.label`
   font-size: 14px;
 `
 
-const Input = ({ text, id, ...props }) => {
-  return (
-    <Group>
-      <Field id={id} name={id} type="text" {...props} />
-      <Label htmlFor={id}>{text}</Label>
-    </Group>
-  )
-}
-
-export default Input
+export default ({ text, id, ...props }) => (
+  <Group>
+    <Input id={id} name={id} type="text" {...props} />
+    <Label htmlFor={id}>{text}</Label>
+  </Group>
+)
