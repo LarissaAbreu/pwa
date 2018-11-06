@@ -1,8 +1,0 @@
-src/static/styles
-node_modules
-build
-package-lock.json
-yarn.lock
-pwa.iml
-.idea
-.docz
