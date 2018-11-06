@@ -10,7 +10,7 @@ import { store, persistedStore } from './store'
 
 import * as icomoon from './statics/fonts/icomoon.woff'
 
-import {} from 'shared'
+import {} from '@ondetempico/shared'
 
 injectGlobal`
   @font-face {

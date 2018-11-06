@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@ondetempico/web",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
-    "shared": "^1.0.0"
+    "@ondetempico/shared": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,11 +39,5 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
     "tslint-react": "^3.6.0"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }

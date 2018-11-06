@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "extends": "../../tsconfig.json",
     "target": "es5",
     "module": "esnext",
     "jsx": "preserve",
