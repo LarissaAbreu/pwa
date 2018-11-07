@@ -8,11 +8,12 @@
     "styled-components": "^4.0.3"
   },
   "scripts": {
-    "start": "tsc -w",
-    "build": "tsc"
+    "build:es": "babel src --out-dir lib",
+    "build:ts": "tsc --emitDeclarationOnly",
+    "build": "npm run build:ts && npm run build:es",
+    "start": "tsc -w"
   },
   "devDependencies": {
-    "typescript": "^3.1.6",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/styled-components": "^4.0.3",

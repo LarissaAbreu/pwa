@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@ondetempico/shared": "^1.0.0",
     "firebase": "^5.2.0",
     "leaflet": "^1.3.4",
     "localforage": "^1.7.2",
@@ -17,14 +18,13 @@
     "redux": "^4.0.0",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
-    "@ondetempico/shared": "^1.0.0"
+    "shared": "^0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
   "devDependencies": {
-    "typescript": "^3.1.3",
     "@types/history": "^4.7.2",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
@@ -38,6 +38,13 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
-    "tslint-react": "^3.6.0"
-  }
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

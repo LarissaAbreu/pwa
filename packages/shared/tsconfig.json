@@ -1,3 +1,12 @@
 {
-  "extends": "../../tsconfig.json"
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "declaration": true,
+    "allowJs": false,
+    "outDir": "lib",
+    "rootDir": "src",
+  },
+  "include": [
+    "src"
+  ]
 }

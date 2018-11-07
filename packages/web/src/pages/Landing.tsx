@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { SignIn, doSignInAtProvider } from '../actions/auth'
 
-import Button from '../components/Button'
+// import Button from '../components/Button'
 
 import { DependenciesContainerType } from '../types'
 import { Actionable } from '../actions/types'
@@ -13,8 +13,8 @@ import * as background from '../../src/statics/images/2.jpg'
 import * as spot from '../../src/statics/images/4.jpg'
 import * as logo from '../../src/statics/images/logo.svg'
 
-import { styled, css } from '../../../shared/src/theme'
-import Container from '../components/Shared/Container'
+import { styled, css } from '@ondetempico/shared'
+import { Container } from '@ondetempico/shared'
 
 type Actions = {
   doSignInAtProvider: () => void
@@ -48,7 +48,6 @@ const Logo = styled.img`
 `
 
 const Header = styled.div`
-  ${Container};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,7 +65,6 @@ const Title = styled.h1`
 `
 
 const Body = styled.div`
-  ${Container};
   height: calc(100% - 100px);
 `
 
@@ -75,7 +73,6 @@ const Spots = styled.div`
   height: 100vh;
   background: ${props => props.theme.colors.secondary};
   display: flex;
-  ${Container};
 `
 
 const Spot = css`
@@ -110,7 +107,7 @@ class Landing extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps): void {
+  componentDidUpdate(prevProps: any): void {
     const { history, auth } = this.props
     const { isAuthenticated } = auth
 
@@ -124,15 +121,15 @@ class Landing extends React.Component<Props, State> {
       <React.Fragment>
         <Home>
           <Header>
-            <Logo src={logo} alt="Ondetempico" />
+            {/* <Logo src={logo} alt="Ondetempico" /> */}
 
-            <Button
+            {/* <Button
               color="primary"
               size="medium"
               onClick={this.props.doSignInAtProvider}
             >
               Entrar
-            </Button>
+            </Button> */}
           </Header>
 
           <Body>

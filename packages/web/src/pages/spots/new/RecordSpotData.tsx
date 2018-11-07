@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Button from '../../../components/Button'
+import * as Button from '@ondetempico/shared'
 import Input from '../../../components/Input'
 import Radio from '../../../components/Radio'
 import Checkbox from '../../../components/Checkbox'

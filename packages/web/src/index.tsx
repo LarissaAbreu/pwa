@@ -10,9 +10,9 @@ import { store, persistedStore } from './store'
 
 import * as icomoon from './statics/fonts/icomoon.woff'
 
-import {} from '@ondetempico/shared'
+import { createGlobalStyle } from '@ondetempico/shared'
 
-injectGlobal`
+createGlobalStyle`
   @font-face {
     font-style: normal;
     font-weight: normal;

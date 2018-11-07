@@ -5,14 +5,14 @@ import { withHandlers, compose } from 'recompose'
 import icons from '../../../../../shared/src/icons'
 
 import Icon from 'shared'
-import Button from '../../../components/Button'
+import * as Button from '@ondetempico/shared'
 import Modal from '../../../components/Modal'
 
 import RecordSpotData from './RecordSpotData'
 import RecordSpotImages from './RecordSpotImages'
 
 import LocationContainer from '../../../containers/LocationContainer'
-import { styled } from '../../../../../shared/src/theme'
+import { styled } from '@ondetempico/shared/src'
 
 const ConfirmButton = styled(Button)`
   position: absolute;
