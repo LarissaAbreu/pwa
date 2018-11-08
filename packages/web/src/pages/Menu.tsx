@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { styled } from '../../../shared/src/theme'
+import { ThunkDispatch } from 'redux-thunk'
 
-import icons from '../../../shared/src/icons'
-import Icon from '../components/Icon'
+import { styled, icons, Icon } from '@ondetempico/shared'
+
 import { signOut, SignOut } from '../actions/auth'
 import { DependenciesContainerType } from '../types'
-import { ThunkDispatch } from 'redux-thunk'
 import { Actionable } from '../actions/types'
 
 const Header = styled.div`
@@ -127,11 +126,11 @@ class Menu extends React.Component<MenuProps, MenuState> {
   }
 }
 
-const mapActionsToProps = (dispatch: MenuDispatch): MenuActions => ({
+const mapActionsToProps = (dispatch): MenuActions => ({
   signOut: () => dispatch(signOut())
 })
 
-const mapStateToProps = ({ auth, history }: DependenciesContainerType) => ({
+const mapStateToProps = ({ auth }: DependenciesContainerType) => ({
   auth
 })
 

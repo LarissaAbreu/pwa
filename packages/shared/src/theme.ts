@@ -1,35 +1,35 @@
-import * as styledComponents from 'styled-components'
-import { ThemedStyledComponentsModule } from 'styled-components'
+import * as styledComponents from "styled-components";
+import { ThemedStyledComponentsModule } from "styled-components";
 
-import colors from './colors'
-import sizes from './sizes'
+import { colors } from "./colors";
+import { sizes } from "./sizes";
 
 type Theme = {
   sizes: {
-    full: string
-    small: string
-  }
+    full: string;
+    small: string;
+  };
   breakpoints: {
-    tablet: string
-    desktop: string
-  }
+    tablet: string;
+    desktop: string;
+  };
   colors: {
-    primary: string
-    secondary: string
-    third: string
-    fourth: string
-  }
+    primary: string;
+    secondary: string;
+    third: string;
+    fourth: string;
+  };
   combinations: {
     primary: {
-      color: string
-      background: string
-    }
+      color: string;
+      background: string;
+    };
     secondary: {
-      color: string
-      background: string
-    }
-  }
-}
+      color: string;
+      background: string;
+    };
+  };
+};
 
 const {
   default: styled,
@@ -37,7 +37,7 @@ const {
   keyframes,
   createGlobalStyle,
   ThemeProvider
-} = styledComponents as ThemedStyledComponentsModule<Theme>
+} = styledComponents as ThemedStyledComponentsModule<Theme>;
 
 export const theme = {
   sizes: {
@@ -45,8 +45,8 @@ export const theme = {
     small: sizes.small
   },
   breakpoints: {
-    tablet: '768px',
-    desktop: '1024px'
+    tablet: "768px",
+    desktop: "1024px"
   },
   colors: {
     primary: colors.primary,
@@ -64,6 +64,6 @@ export const theme = {
       background: colors.primary
     }
   }
-}
+};
 
-export { styled, css, createGlobalStyle, keyframes, ThemeProvider }
+export { styled, css, createGlobalStyle, keyframes, ThemeProvider };

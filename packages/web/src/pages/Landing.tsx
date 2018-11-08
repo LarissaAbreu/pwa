@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { SignIn, doSignInAtProvider } from '../actions/auth'
 
-// import Button from '../components/Button'
+import { Button } from '@ondetempico/shared'
 
 import { DependenciesContainerType } from '../types'
 import { Actionable } from '../actions/types'
@@ -14,7 +14,6 @@ import * as spot from '../../src/statics/images/4.jpg'
 import * as logo from '../../src/statics/images/logo.svg'
 
 import { styled, css } from '@ondetempico/shared'
-import { Container } from '@ondetempico/shared'
 
 type Actions = {
   doSignInAtProvider: () => void
@@ -25,6 +24,8 @@ type Props = Actions & DependenciesContainerType
 export type State = Props
 
 export type Dispatch = ThunkDispatch<State, undefined, Actionable<SignIn>>
+
+console.log(styled)
 
 const Home = styled.div`
   width: 100%;

@@ -2,17 +2,12 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { withHandlers, compose } from 'recompose'
 
-import icons from '../../../../../shared/src/icons'
-
-import Icon from 'shared'
-import * as Button from '@ondetempico/shared'
-import Modal from '../../../components/Modal'
+import { icons, Icon, Modal, Button, styled } from '@ondetempico/shared'
 
 import RecordSpotData from './RecordSpotData'
 import RecordSpotImages from './RecordSpotImages'
 
 import LocationContainer from '../../../containers/LocationContainer'
-import { styled } from '@ondetempico/shared/src'
 
 const ConfirmButton = styled(Button)`
   position: absolute;
@@ -38,7 +33,16 @@ const Marker = styled(Icon)`
 `
 
 type Actions = {
-  // recordSpot: ({}) => boolean
+  recordSpot: (spot: {}) => boolean
+}
+
+type Data = {
+  name?: string
+  hasFree?: boolean
+  modalities?: {
+    street: boolean
+    longboard: boolean
+  }
 }
 
 type Props = {}
@@ -48,7 +52,7 @@ interface State extends Props {
   isRecordSpotImagesVisible: boolean
   isSpotRecorded: boolean
   isSpotRecordPublished: boolean
-  data: {}
+  data: Data
 }
 
 class NewSpot extends React.Component<Props & Actions, State> {
@@ -71,7 +75,7 @@ class NewSpot extends React.Component<Props & Actions, State> {
   /**
    * @todo If spot is empty, display modal that we can't get position
    */
-  recordSpotData = () => {
+  private recordSpotData = () => {
     // const { spot } = this.props
 
     this.setState({
@@ -79,7 +83,7 @@ class NewSpot extends React.Component<Props & Actions, State> {
     })
   }
 
-  imageWasSubmited = event => {
+  private imageWasSubmited = event => {
     event.preventDefault()
 
     const { data } = this.state
@@ -93,7 +97,7 @@ class NewSpot extends React.Component<Props & Actions, State> {
     this.isModalSpotRecordadedVisible(true)
   }
 
-  formDataWasSubmited = event => {
+  private formDataWasSubmited = event => {
     event.preventDefault()
 
     this.setState({
@@ -103,7 +107,7 @@ class NewSpot extends React.Component<Props & Actions, State> {
 
     const { name, street, longboard, free } = event.target
 
-    const data = {
+    const data: Data = {
       name: name.value,
       hasFree: !!free.checked,
       modalities: {
@@ -127,7 +131,7 @@ class NewSpot extends React.Component<Props & Actions, State> {
       <Wrapper>
         {isSpotRecordPublished && (
           <Modal
-            onClickButton={this.isModalSpotRecordadedVisible}
+            buttonWasClicked={this.isModalSpotRecordadedVisible}
             description={
               isSpotRecorded
                 ? 'Pico cadastrado com sucesso!'
@@ -189,7 +193,7 @@ const mapHandlers = {
 
 const mapStateToProps = state => state
 
-export default compose(
+export default compose<Props & Actions, {}>(
   connect(mapStateToProps),
   withHandlers(mapHandlers)
 )(NewSpot)

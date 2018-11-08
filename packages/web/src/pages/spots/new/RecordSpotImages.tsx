@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import * as Button from '@ondetempico/shared'
-import Upload from '../../../components/Upload'
+import { Upload, Button } from '@ondetempico/shared'
 
 import RecordWrapper from './ui/RecordWrapper'
 import WrapperTitle from './ui/WrapperTitle'

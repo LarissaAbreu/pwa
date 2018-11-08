@@ -1,19 +1,28 @@
 {
   "name": "@ondetempico/shared",
   "version": "1.0.0",
+  "main": "lib/main.js",
+  "source": "src/index.ts",
+  "typings": "src/index.ts",
   "private": true,
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "styled-components": "^4.0.3"
+    "styled-components": "^4.0.3",
+    "firebase": "^5.5.7"
   },
+  "files": [
+    "lib/main.js"
+  ],
   "scripts": {
-    "build:es": "babel src --out-dir lib",
-    "build:ts": "tsc --emitDeclarationOnly",
-    "build": "npm run build:ts && npm run build:es",
-    "start": "tsc -w"
+    "build": "webpack",
+    "start": "webpack -w"
   },
   "devDependencies": {
+    "webpack-cli": "^3.1.2",
+    "webpack": "^4.25.1",
+    "ts-loader": "^5.3.0",
+    "typescript": "^3.1.5",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/styled-components": "^4.0.3",

@@ -28,7 +28,7 @@ export const fetchLocation = (): LocationResult<void> => {
 
   return (dispatch: Dispatch<Actionable<Location>>) => {
     location
-      .then(({ coords }) => {
+      .then(({ coords }: any) => {
         const { longitude, latitude }: LocationFetched = coords
 
         dispatch(locationFetched({ latitude, longitude }))

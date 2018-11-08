@@ -8,7 +8,7 @@ import App from './App'
 
 import { store, persistedStore } from './store'
 
-import * as icomoon from './statics/fonts/icomoon.woff'
+// import * as icomoon from './statics/fonts/icomoon.woff'
 
 import { createGlobalStyle } from '@ondetempico/shared'
 
@@ -17,7 +17,7 @@ createGlobalStyle`
     font-style: normal;
     font-weight: normal;
     font-family: icomoon;
-    src: url(${icomoon});
+    src: url('statics/fonts/icomoon.woff');
   }
 
   * {

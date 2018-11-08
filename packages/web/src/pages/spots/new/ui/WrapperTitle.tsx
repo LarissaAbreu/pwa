@@ -1,4 +1,4 @@
-import { styled } from '../../../../../../shared/src/theme'
+import { styled } from '@ondetempico/shared'
 
 const WrapperTitle = styled.h1`
   margin: 20px 0;

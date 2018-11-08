@@ -1,9 +1,7 @@
 import * as React from 'react'
 
 import * as Button from '@ondetempico/shared'
-import Input from '../../../components/Input'
-import Radio from '../../../components/Radio'
-import Checkbox from '../../../components/Checkbox'
+import { Input, Radio, Checkbox } from '@ondetempico/shared'
 
 import RecordWrapper from './ui/RecordWrapper'
 import WrapperTitle from './ui/WrapperTitle'

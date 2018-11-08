@@ -1,4 +1,4 @@
-import { styled } from '../../../../../../shared/src/theme'
+import { styled } from '@ondetempico/shared'
 
 const RecordButton = Button => {
   return styled(Button)`

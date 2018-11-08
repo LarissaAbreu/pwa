@@ -2,7 +2,7 @@ import * as React from 'react'
 import { compose } from 'recompose'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
-import { ThemeProvider, theme } from '../../shared/src/theme'
+import { ThemeProvider, theme } from '@ondetempico/shared'
 
 import Landing from './pages/Landing'
 import Preferences from './pages/Preferences'
