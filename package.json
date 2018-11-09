@@ -10,6 +10,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "file-loader": "^2.0.0",
     "lerna": "3.4.3"
   }
 }

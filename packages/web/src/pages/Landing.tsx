@@ -22,10 +22,7 @@ type Actions = {
 type Props = Actions & DependenciesContainerType
 
 export type State = Props
-
 export type Dispatch = ThunkDispatch<State, undefined, Actionable<SignIn>>
-
-console.log(styled)
 
 const Home = styled.div`
   width: 100%;
@@ -122,15 +119,15 @@ class Landing extends React.Component<Props, State> {
       <React.Fragment>
         <Home>
           <Header>
-            {/* <Logo src={logo} alt="Ondetempico" /> */}
+            <Logo src={logo} alt="Ondetempico" />
 
-            {/* <Button
+            <Button
               color="primary"
               size="medium"
               onClick={this.props.doSignInAtProvider}
             >
               Entrar
-            </Button> */}
+            </Button>
           </Header>
 
           <Body>

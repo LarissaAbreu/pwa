@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { Button } from "./Button";
-import { Icon } from "./Icon";
+import React from 'react'
+import styled from 'styled-components'
+import { Button } from './Button'
+import { Icon } from './Icon'
+import { string } from 'prop-types'
 
 const Description = styled.p`
   color: ${props => props.theme.colors.secondary};
   margin-bottom: 20px;
-`;
+`
 
 const Overlay = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ const Overlay = styled.div`
   justify-content: center;
   flex-direction: column;
   position: absolute;
-`;
+`
 
 const Wrapper = styled.div`
   background: ${props => props.theme.colors.primary};
@@ -30,18 +31,22 @@ const Wrapper = styled.div`
   top: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
-`;
+`
 
 const ConfirmButton = styled(Button)`
   margin-top: 10px;
-`;
+`
 
 type Props = {
-  buttonWasClicked: () => any;
-  description: string;
-};
+  buttonWasClicked: (event: React.MouseEvent) => void
+  description: string
+}
 
-export const Modal = ({ buttonWasClicked, description, ...props }: Props) => {
+export const Modal: React.SFC<Props> = ({
+  buttonWasClicked,
+  description,
+  ...props
+}: Props) => {
   return (
     <Overlay {...props}>
       <Wrapper>
@@ -52,5 +57,5 @@ export const Modal = ({ buttonWasClicked, description, ...props }: Props) => {
         </ConfirmButton>
       </Wrapper>
     </Overlay>
-  );
-};
+  )
+}

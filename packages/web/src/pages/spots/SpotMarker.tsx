@@ -13,15 +13,27 @@ const Modal = styled.div`
   display: block;
 `
 
-class SpotMarker extends Component {
+type State = {
+  isVisible: boolean
+}
+
+type Props = {
+  name: string
+  isFree: boolean
+  images
+  hasStreet: boolean
+  hasLongboard: boolean
+  latitude: number
+  longitude: number
+}
+
+class SpotMarker extends Component<Props, State> {
   static state = {
     isVibisible: false
   }
 
-  openDialogInformation = () => {
-    this.setState({
-      isVibisible: true
-    })
+  private openDialogInformation = () => {
+    this.setState({ isVisible: true })
   }
 
   render() {

@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { styled, icons, Icon } from '@ondetempico/shared'
 
-import { signOut, SignOut } from '../actions/auth'
+import { doSignOut, SignOut } from '../actions/auth'
 import { DependenciesContainerType } from '../types'
 import { Actionable } from '../actions/types'
 
@@ -56,27 +56,23 @@ const IconWraper = styled(Icon)`
   vertical-align: middle;
 `
 
-type MenuActions = {
-  signOut: () => void
+type Actions = {
+  doSignOut: () => void
 }
 
-interface MenuProps extends DependenciesContainerType, MenuActions {
+interface Props extends Actions, DependenciesContainerType {
   toggleMenu: () => void
 }
 
-export type MenuState = MenuProps
+export type State = Props
 
-export type MenuDispatch = ThunkDispatch<
-  MenuState,
-  undefined,
-  Actionable<SignOut>
->
+export type Dispatch = ThunkDispatch<State, undefined, Actionable<SignOut>>
 
-class Menu extends React.Component<MenuProps, MenuState> {
-  signOut = (): void => {
-    const { signOut, history } = this.props
+class Menu extends React.Component<Props, State> {
+  private signOutWhenClicked = (): void => {
+    const { doSignOut, history } = this.props
 
-    signOut()
+    doSignOut()
   }
 
   render(): React.ReactNode {
@@ -117,7 +113,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
           Skateshops
         </LinkWrapper>
 
-        <LinkWrapper to="/" onClick={this.signOut}>
+        <LinkWrapper to="/" onClick={this.signOutWhenClicked}>
           <IconWraper icon={icons.logout} />
           Sair
         </LinkWrapper>
@@ -126,8 +122,8 @@ class Menu extends React.Component<MenuProps, MenuState> {
   }
 }
 
-const mapActionsToProps = (dispatch): MenuActions => ({
-  signOut: () => dispatch(signOut())
+const mapActionsToProps = (dispatch: Dispatch): Actions => ({
+  doSignOut: () => dispatch(doSignOut())
 })
 
 const mapStateToProps = ({ auth }: DependenciesContainerType) => ({

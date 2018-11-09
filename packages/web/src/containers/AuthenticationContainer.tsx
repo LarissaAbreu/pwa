@@ -5,13 +5,11 @@ import { DependenciesContainerType } from '../types'
 import DependenciesContainer from './DependenciesContainer'
 import { compose } from 'recompose'
 
-type S = DependenciesContainerType
-type Props = S
-
-type ComponentAuthenticated = React.ComponentType
+type State = DependenciesContainerType
+type Props = State
 
 const AuthenticationContainer = Component => {
-  class Authentication extends React.Component<Props, S> {
+  class Authentication extends React.Component<Props, State> {
     componentDidMount(): void {
       const { auth, history } = this.props
 
@@ -27,9 +25,9 @@ const AuthenticationContainer = Component => {
     }
   }
 
-  const mapStateToProps = (state): S => state
+  const mapStateToProps = (state): State => state
 
-  return compose<Props, S>(
+  return compose<Props, State>(
     connect<Props>(mapStateToProps),
     DependenciesContainer
   )(Authentication)

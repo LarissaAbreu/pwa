@@ -3,7 +3,7 @@ import { Actionable } from './types'
 import { Dispatch } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { State as LandingState } from '../pages/Landing'
-import { MenuState } from '../pages/Menu'
+import { State as MenuState } from '../pages/Menu'
 import { authRef, provider, databaseRef } from '@ondetempico/shared'
 import { AuthState } from '../reducers/auth'
 import { FetchedUser } from '../types'
@@ -60,7 +60,7 @@ export const doSignInAtProvider = (): SignInResult<void> => {
   }
 }
 
-export const signOut = (): SignOutResult<void> => {
+export const doSignOut = (): SignOutResult<void> => {
   return (dispatch: Dispatch<Actionable<SignOut>>) => {
     authRef
       .signOut()
