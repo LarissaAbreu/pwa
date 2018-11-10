@@ -1,10 +1,11 @@
 import * as React from 'react'
 
-import { Upload, Button } from '@ondetempico/shared'
+import { Button } from '@ondetempico/shared/src/components/Button'
+import {Upload} from '@ondetempico/shared/src/components/Upload'
 
 import RecordWrapper from './ui/RecordWrapper'
 import WrapperTitle from './ui/WrapperTitle'
-import RecordButton from './ui/RecordButton'
+import {RecordButton} from './ui/RecordButton'
 
 const RecordImagesButton = RecordButton(Button)
 

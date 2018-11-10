@@ -2,7 +2,13 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { withHandlers, compose } from 'recompose'
 
-import { icons, Icon, Modal, Button, styled } from '@ondetempico/shared'
+import { Button } from '@ondetempico/shared/src/components/Button'
+import { Icon } from '@ondetempico/shared/src/components/Icon'
+import { Modal } from '@ondetempico/shared/src/components/Modal'
+
+import { icons } from '@ondetempico/shared/src/icons'
+
+import {styled} from '../../../theme'
 
 import RecordSpotData from './RecordSpotData'
 import RecordSpotImages from './RecordSpotImages'

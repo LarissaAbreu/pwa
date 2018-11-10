@@ -1,12 +1,14 @@
 import * as React from 'react'
 
-import * as Button from '@ondetempico/shared'
-import { Input, Radio, Checkbox } from '@ondetempico/shared'
+import { Input } from '@ondetempico/shared/src/components/Input'
+import { Radio } from '@ondetempico/shared/src/components/Radio'
+import { Checkbox } from '@ondetempico/shared/src/components/Checkbox'
+import { Button } from '@ondetempico/shared/src/components/Button'
 
 import RecordWrapper from './ui/RecordWrapper'
 import WrapperTitle from './ui/WrapperTitle'
 import WrapperSubtitle from './ui/WrapperSubtitle'
-import RecordButton from './ui/RecordButton'
+import {RecordButton} from './ui/RecordButton'
 
 const RecordDataButton = RecordButton(Button)
 
@@ -27,7 +29,12 @@ const RecordSpotData = ({ onSubmit }) => (
       É necessário pagar pra andar aí?, Marque uma opção.
     </WrapperSubtitle>
 
-    <Radio id="paid" name="cost" text="O acesso é pago" />
+    <Radio
+      id="paid"
+      name="cost"
+      text="O acesso é pago"
+      defaultChecked={false} />
+
     <Radio
       id="free"
       name="cost"

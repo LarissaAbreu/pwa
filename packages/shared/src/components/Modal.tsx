@@ -1,8 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+
 import { Button } from './Button'
-import { Icon } from './Icon'
-import { string } from 'prop-types'
+import { styled } from '../theme';
 
 const Description = styled.p`
   color: ${props => props.theme.colors.secondary};

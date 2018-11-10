@@ -4,7 +4,7 @@ import { ThemedStyledComponentsModule } from "styled-components";
 import { colors } from "./colors";
 import { sizes } from "./sizes";
 
-type Theme = {
+export type Theme = {
   sizes: {
     full: string;
     small: string;

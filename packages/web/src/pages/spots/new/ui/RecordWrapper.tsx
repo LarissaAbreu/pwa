@@ -1,4 +1,4 @@
-import { styled } from '@ondetempico/shared'
+import { styled } from '../../../../theme'
 
 const RecordWrapper = styled.form`
   width: 100%;

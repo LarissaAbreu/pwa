@@ -2,8 +2,6 @@ import * as React from 'react'
 
 import { connect } from 'react-redux'
 
-import { Loader } from '@ondetempico/shared'
-
 import SpotMarker from './SpotMarker'
 
 import { fetchLocation, Location } from '../../actions/location'
@@ -11,7 +9,8 @@ import LocationContainer from '../../containers/LocationContainer'
 import { DependenciesContainerType } from '../../types'
 import { ThunkDispatch } from 'redux-thunk'
 import { Actionable } from '../../actions/types'
-import { databaseRef } from '@ondetempico/shared'
+import { databaseRef } from '@ondetempico/shared/src/firebase'
+import {Loader} from '@ondetempico/shared/src/components/Loader'
 
 type Actions = {
   fetchLocation: () => void

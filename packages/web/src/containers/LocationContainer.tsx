@@ -5,7 +5,7 @@ import { Map, TileLayer } from 'react-leaflet'
 import { fetchLocation } from '../actions/location'
 import { recordCenter } from '../actions/spot'
 
-import { Loader } from '@ondetempico/shared'
+import { Loader } from '@ondetempico/shared/src/components/Loader'
 import { ThunkDispatch } from 'redux-thunk'
 import { Actionable } from '../actions/types'
 import { Coords } from '../types'

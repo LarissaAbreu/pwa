@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Marker } from 'react-leaflet'
-import { styled } from '@ondetempico/shared'
+import { styled } from '../../theme'
 
 const Modal = styled.div`
   max-width: 500px;

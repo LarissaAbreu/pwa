@@ -11,9 +11,10 @@ type Props = {
   id: string;
   name: string;
   text: string;
+  defaultChecked: boolean
 };
 
-export const Radio = ({ id, name, text, ...props }: Props) => {
+export const Radio: React.SFC<Props> = ({ id, name, text, ...props }: Props) => {
   return (
     <Group>
       <Input id={id} name={name} {...props} type="radio" />

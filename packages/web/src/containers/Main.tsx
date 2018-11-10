@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 
-import { icons, Icon } from '@ondetempico/shared'
+import { styled } from '../theme'
+import { Icon } from '@ondetempico/shared/src/components/Icon'
+import {icons} from '@ondetempico/shared/src/icons'
 
 import Menu from '../pages/Menu'
 import { DependenciesContainerType } from '../types'

@@ -8,9 +8,9 @@ import App from './App'
 
 import { store, persistedStore } from './store'
 
-// import * as icomoon from './statics/fonts/icomoon.woff'
+import * as icomoon from './statics/fonts/icomoon.woff'
 
-import { createGlobalStyle } from '@ondetempico/shared'
+import { createGlobalStyle } from '@ondetempico/shared/src/theme'
 
 createGlobalStyle`
   @font-face {

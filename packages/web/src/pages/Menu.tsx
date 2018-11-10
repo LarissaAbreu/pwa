@@ -1,13 +1,16 @@
 import * as React from 'react'
+import { Action } from 'redux';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { styled, icons, Icon } from '@ondetempico/shared'
+import { Icon } from '@ondetempico/shared/src/components/Icon'
+import {icons} from '@ondetempico/shared/src/icons'
 
-import { doSignOut, SignOut } from '../actions/auth'
+import {styled} from '../theme'
+
+import { doSignOut } from '../actions/auth'
 import { DependenciesContainerType } from '../types'
-import { Actionable } from '../actions/types'
 
 const Header = styled.div`
   text-align: center;
@@ -57,22 +60,21 @@ const IconWraper = styled(Icon)`
 `
 
 type Actions = {
-  doSignOut: () => void
+  signOutWhenClicked
 }
 
-interface Props extends Actions, DependenciesContainerType {
+type Props = Actions & DependenciesContainerType & {
   toggleMenu: () => void
 }
 
 export type State = Props
-
-export type Dispatch = ThunkDispatch<State, undefined, Actionable<SignOut>>
+export type Dispatch = ThunkDispatch<State, undefined, Action>
 
 class Menu extends React.Component<Props, State> {
   private signOutWhenClicked = (): void => {
-    const { doSignOut, history } = this.props
+    const { signOutWhenClicked, history } = this.props
 
-    doSignOut()
+    signOutWhenClicked()
   }
 
   render(): React.ReactNode {
@@ -123,7 +125,7 @@ class Menu extends React.Component<Props, State> {
 }
 
 const mapActionsToProps = (dispatch: Dispatch): Actions => ({
-  doSignOut: () => dispatch(doSignOut())
+  signOutWhenClicked: dispatch(doSignOut())
 })
 
 const mapStateToProps = ({ auth }: DependenciesContainerType) => ({

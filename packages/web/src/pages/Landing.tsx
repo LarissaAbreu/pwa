@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { SignIn, doSignInAtProvider } from '../actions/auth'
 
-import { Button } from '@ondetempico/shared'
+import { Button } from '@ondetempico/shared/src/components/Button'
 
 import { DependenciesContainerType } from '../types'
 import { Actionable } from '../actions/types'
@@ -13,7 +13,7 @@ import * as background from '../../src/statics/images/2.jpg'
 import * as spot from '../../src/statics/images/4.jpg'
 import * as logo from '../../src/statics/images/logo.svg'
 
-import { styled, css } from '@ondetempico/shared'
+import { styled, css } from '../theme'
 
 type Actions = {
   doSignInAtProvider: () => void

@@ -9,19 +9,22 @@ module.exports = {
 
   devServer: {
     contentBase: BUILD_DIR,
-    compress: false,
+    compress: true,
     port: 3000,
-    hot: true
+    hot: false
   },
 
   output: {
     path: BUILD_DIR,
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].chunk.js'
+    filename: '[name].bundle.js'
   },
 
   resolve: {
     extensions: ['.js', '.ts', '.tsx']
+  },
+
+  optimization: {
+    minimize: false
   },
 
   module: {
