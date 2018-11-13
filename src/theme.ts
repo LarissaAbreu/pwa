@@ -4,6 +4,8 @@ import { ThemedStyledComponentsModule } from 'styled-components'
 import { colors } from './colors'
 import { sizes } from './sizes'
 
+export type Colors = 'primary' | 'secondary' | 'third' | 'fourth'
+
 export type Theme = {
   sizes: {
     full: string

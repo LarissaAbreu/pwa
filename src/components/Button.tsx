@@ -28,15 +28,16 @@ const map = {
 };
 
 export const Button = styled.button`
-  font-size: 14px;
-  letter-spacing: 1px;
+  font-size: 15px;
   border: none;
   border-radius: 50px;
-  font-weight: 400;
-  text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
   background: ${props => props.theme.combinations[props.color].background};
   color: ${props => props.theme.combinations[props.color].color};
   ${(props: Props) => map[props.size]};
+
+  &:hover {
+    animation: bounce 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
 `;

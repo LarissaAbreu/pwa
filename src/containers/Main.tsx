@@ -2,10 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import { styled } from '../theme'
-import { Icon } from '../components/Icon'
-import { icons } from '../icons'
 
-import Menu from '../pages/Menu'
 import { DependenciesContainerType } from '../types'
 
 const MainWrapper = styled.div`
@@ -23,15 +20,15 @@ const Bar = styled.div`
   position: relative;
 `
 
-const IconWrapper = styled(Icon)`
-  color: ${props => props.theme.colors.primary};
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: rem(24px);
-`
+// const IconWrapper = styled(Icon)`
+//   color: ${props => props.theme.colors.primary};
+//   position: absolute;
+//   left: 15px;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   cursor: pointer;
+//   font-size: rem(24px);
+// `
 
 type State = {
   isMenuVisible: boolean
@@ -62,7 +59,7 @@ class Main extends React.Component<Props, State> {
 
         <Content>
           <Bar>
-            <IconWrapper icon={icons.menu} onClick={this.toggleMenu} />
+            {/* <IconWrapper icon={icons.menu} onClick={this.toggleMenu} /> */}
           </Bar>
 
           {this.props.children}

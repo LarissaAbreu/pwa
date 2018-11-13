@@ -1,23 +1,15 @@
-import React from 'react'
+import * as React from 'react'
 
-import { styled } from "../theme";
+import { theme, Colors } from "../theme";
 
 type Props = {
-  icon: string;
+  width: number
+  height: number
+  color: Colors
 };
 
-export const Icon = styled.span`
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  &::before {
-    content: "\\${(props: Props) => props.icon}";
-  }
-`;
+export const Icon: React.SFC<Props> = ({ width, height, color, children }) => (
+  <svg width={width} height={height} fill={theme.colors[color]} viewBox="0 0 1024 1024">
+    {children}
+  </svg>
+)

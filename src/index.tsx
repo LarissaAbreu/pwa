@@ -8,16 +8,17 @@ import App from './App'
 
 import { store, persistedStore } from './store'
 
-// import * as icomoon from './statics/fonts/icomoon.woff'
 
 import { createGlobalStyle } from './theme'
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-style: normal;
-    font-weight: normal;
-    font-family: icomoon;
-    src: url('statics/fonts/icomoon.woff');
+  @keyframes bounce {
+    from {
+      transform: scale(1.1);
+    }
+    to {
+      transform: scale(1);
+    }
   }
 
   * {

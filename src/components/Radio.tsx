@@ -1,7 +1,5 @@
 import React from "react";
 
-import { icons } from "../icons";
-
 import { Label } from "./Opcionable/Label";
 import { Group } from "./Opcionable/Group";
 import { Input } from "./Opcionable/Input";
@@ -22,7 +20,7 @@ export const Radio: React.SFC<Props> = ({ id, name, text, ...props }: Props) => 
       <Label htmlFor={id}>
         {text}
 
-        <IconWrapper icon={icons.check} />
+        {/* <IconWrapper icon={icons.check} /> */}
       </Label>
     </Group>
   );

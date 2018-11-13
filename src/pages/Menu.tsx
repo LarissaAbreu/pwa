@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThunkDispatch } from 'redux-thunk'
 
-import { Icon } from '../components/Icon'
-import { icons } from '../icons'
-
 import { styled } from '../theme'
 
 import { doSignOut } from '../actions/auth'
@@ -53,12 +50,6 @@ const LinkWrapper = styled(Link)`
   text-decoration: none;
 `
 
-const IconWraper = styled(Icon)`
-  font-size: 18px;
-  margin-right: 10px;
-  vertical-align: middle;
-`
-
 type Actions = {
   signOutWhenClicked
 }
@@ -90,34 +81,28 @@ class Menu extends React.Component<Props, State> {
         </Header>
 
         <LinkWrapper to="/spots/list" onClick={toggleMenu}>
-          <IconWraper icon={icons.skateboarder} />
           Todos os picos
         </LinkWrapper>
 
         {auth.isAdmin && (
           <LinkWrapper to="/spots/analyze" onClick={toggleMenu}>
-            <IconWraper icon={icons.configuration} />
             Analisar pico
           </LinkWrapper>
         )}
 
         <LinkWrapper to="/spots/new" onClick={toggleMenu}>
-          <IconWraper icon={icons.plus} />
           Adicionar novo pico
         </LinkWrapper>
 
         <LinkWrapper to="" onClick={toggleMenu}>
-          <IconWraper icon={icons.trophy} />
           Campeonatos
         </LinkWrapper>
 
         <LinkWrapper to="" onClick={toggleMenu}>
-          <IconWraper icon={icons.shopping} />
           Skateshops
         </LinkWrapper>
 
         <LinkWrapper to="/" onClick={this.signOutWhenClicked}>
-          <IconWraper icon={icons.logout} />
           Sair
         </LinkWrapper>
       </Wrapper>

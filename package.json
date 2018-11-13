@@ -21,7 +21,8 @@
   },
   "scripts": {
     "build": "react-app-rewired build",
-    "start": "react-app-rewired start"
+    "start": "react-app-rewired start",
+    "deploy": "react-app-rewired build && firebase deploy --only hosting"
   },
   "devDependencies": {
     "react-app-rewired": "^1.6.2",

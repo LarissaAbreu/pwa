@@ -3,10 +3,7 @@ import { connect } from 'react-redux'
 import { withHandlers, compose } from 'recompose'
 
 import { Button } from '../../../components/Button'
-import { Icon } from '../../../components/Icon'
 import { Modal } from '../../../components/Modal'
-
-import { icons } from '../../../icons'
 
 import { styled } from '../../../theme'
 
@@ -29,14 +26,14 @@ const Wrapper = styled.div`
   height: calc(100vh - 50px);
 `
 
-const Marker = styled(Icon)`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 500;
-  font-size: 25px;
-`
+// const Marker = styled(Icon)`
+//   position: absolute;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index: 500;
+//   font-size: 25px;
+// `
 
 type Actions = {
   recordSpot: (spot: {}) => boolean
@@ -153,7 +150,7 @@ class NewSpot extends React.Component<Props & Actions, State> {
           <RecordSpotData onSubmit={this.formDataWasSubmited} />
         )}
 
-        <Marker icon={icons.marker} />
+        {/* <Marker icon={icons.marker} /> */}
 
         <ConfirmButton
           size="large"
