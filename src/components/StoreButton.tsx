@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { styled } from '../theme';
+import * as ReactGA from 'react-ga'
 
-const Button =  styled.div`
+import { styled } from '../theme'
+
+const Button = styled.div`
   cursor: not-allowed;
   color: ${props => props.theme.colors.secondary};
   background: ${props => props.theme.colors.primary};
@@ -33,14 +35,21 @@ const Title = styled.span`
   font-weight: 600;
 `
 
+const whenClicked = (store: string) => {
+  ReactGA.event({
+    action: 'Store',
+    category: store
+  })
+}
+
 export const StoreButton = ({ children, title }) => (
- <Button>
-   {children}
+  <Button onClick={() => whenClicked(title)}>
+    {children}
 
     <Text>
       <Get>obtê-lo na</Get>
 
       <Title>{title}Store</Title>
     </Text>
- </Button>
+  </Button>
 )
