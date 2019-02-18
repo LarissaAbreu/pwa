@@ -1,8 +1,4 @@
-src/static/styles
 node_modules
 build
-package-lock.json
+.firebase
 yarn.lock
-pwa.iml
-.idea
-.docz
