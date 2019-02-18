@@ -62,52 +62,32 @@ type Props = Actions &
 export type State = Props
 export type Dispatch = ThunkDispatch<State, undefined, Action>
 
-class Menu extends React.Component<Props, State> {
-  private signOutWhenClicked = (): void => {
-    const { signOutWhenClicked, history } = this.props
+function Menu(props) {
+  const signOutWhenClicked = (): void => {
+    const { signOutWhenClicked, history } = props
 
     signOutWhenClicked()
   }
 
-  render(): React.ReactNode {
-    const { toggleMenu, auth } = this.props
+  const { toggleMenu, auth } = props
 
-    return (
-      <Wrapper>
-        <Header>
-          <Photo src="{profile.avatarUrl}" />
-          <Name />
-          <Role>Usuário</Role>
-        </Header>
+  return (
+    <Wrapper>
+      <Header>
+        <Photo src="{profile.avatarUrl}" />
+        <Name />
+        <Role>Administrador</Role>
+      </Header>
 
-        <LinkWrapper to="/spots/list" onClick={toggleMenu}>
-          Todos os picos
-        </LinkWrapper>
+      <LinkWrapper to="/spots/analyze" onClick={toggleMenu}>
+        Analisar pico
+      </LinkWrapper>
 
-        {auth.isAdmin && (
-          <LinkWrapper to="/spots/analyze" onClick={toggleMenu}>
-            Analisar pico
-          </LinkWrapper>
-        )}
-
-        <LinkWrapper to="/spots/new" onClick={toggleMenu}>
-          Adicionar novo pico
-        </LinkWrapper>
-
-        <LinkWrapper to="" onClick={toggleMenu}>
-          Campeonatos
-        </LinkWrapper>
-
-        <LinkWrapper to="" onClick={toggleMenu}>
-          Skateshops
-        </LinkWrapper>
-
-        <LinkWrapper to="/" onClick={this.signOutWhenClicked}>
-          Sair
-        </LinkWrapper>
-      </Wrapper>
-    )
-  }
+      <LinkWrapper to="/" onClick={signOutWhenClicked}>
+        Sair
+      </LinkWrapper>
+    </Wrapper>
+  )
 }
 
 const mapActionsToProps = (dispatch: Dispatch): Actions => ({

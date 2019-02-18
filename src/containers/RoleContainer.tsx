@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { connect, MapStateToProps } from 'react-redux'
+import { connect } from 'react-redux'
 
 import { DependenciesContainerType } from '../types'
 
 type State = DependenciesContainerType
 type Props = State
 
-const RoleContainer = (
+export const RoleContainer = (
   Component: React.ComponentType<Props>
 ): React.ComponentClass<Props> => {
   class Role extends React.Component<Props, State> {
@@ -27,5 +27,3 @@ const RoleContainer = (
 
   return connect(mapStateToProps)(Role)
 }
-
-export default RoleContainer

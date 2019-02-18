@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export const Loader = ({ text, ...props }) => {
   return (
@@ -6,5 +6,5 @@ export const Loader = ({ text, ...props }) => {
       <i className="loader__icon icon--loading" />
       <p className="loader__description">{text}</p>
     </div>
-  );
-};
+  )
+}

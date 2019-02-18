@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState, ReactNode } from 'react'
 import { connect } from 'react-redux'
 
 import { styled } from '../theme'
@@ -30,43 +30,32 @@ const Bar = styled.div`
 //   font-size: rem(24px);
 // `
 
-type State = {
-  isMenuVisible: boolean
+interface Props extends DependenciesContainerType {
+  children: ReactNode
 }
 
-interface Props extends DependenciesContainerType, State {}
+function Main(props: Props) {
+  const [isMenuShowing, setShowMenu] = useState(true)
 
-class Main extends React.Component<Props, State> {
-  state = {
-    isMenuVisible: true
-  }
+  const toggleMenu = () => setShowMenu(!isMenuShowing)
 
-  private toggleMenu = () => {
-    this.setState(({ isMenuVisible }) => ({
-      isMenuVisible: !isMenuVisible
-    }))
-  }
+  const { history } = props
 
-  render() {
-    const { history } = this.props
-    const { isMenuVisible } = this.state
-
-    return (
-      <MainWrapper>
-        {/* {isMenuVisible && (
-          <Menu toggleMenu={this.toggleMenu} history={history} />
+  return (
+    <MainWrapper>
+      {/* {isMenuShowing && (
+          <Menu toggleMenu={toggleMenu} history={history} />
         )} */}
 
-        <Content>
-          <Bar>
-            {/* <IconWrapper icon={icons.menu} onClick={this.toggleMenu} /> */}
-          </Bar>
+      <Content>
+        <Bar>
+          {/* <IconWrapper icon={icons.menu} onClick={toggleMenu} /> */}
+        </Bar>
 
-          {this.props.children}
-        </Content>
-      </MainWrapper>
-    )
-  }
+        {props.children}
+      </Content>
+    </MainWrapper>
+  )
 }
 
 const mapStateToProps = state => state

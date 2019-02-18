@@ -1,18 +1,23 @@
-import React from "react";
+import React from 'react'
 
-import { Label } from "./Opcionable/Label";
-import { Group } from "./Opcionable/Group";
-import { Input } from "./Opcionable/Input";
-import { IconWrapper } from "./Opcionable/IconWrapper";
+import { Label } from './Opcionable/Label'
+import { Group } from './Opcionable/Group'
+import { Input } from './Opcionable/Input'
+import { IconWrapper } from './Opcionable/IconWrapper'
 
 type Props = {
-  id: string;
-  name: string;
-  text: string;
+  id: string
+  name: string
+  text: string
   defaultChecked: boolean
-};
+}
 
-export const Radio: React.SFC<Props> = ({ id, name, text, ...props }: Props) => {
+export const Radio: React.SFC<Props> = ({
+  id,
+  name,
+  text,
+  ...props
+}: Props) => {
   return (
     <Group>
       <Input id={id} name={name} {...props} type="radio" />
@@ -23,5 +28,5 @@ export const Radio: React.SFC<Props> = ({ id, name, text, ...props }: Props) => 
         {/* <IconWrapper icon={icons.check} /> */}
       </Label>
     </Group>
-  );
-};
+  )
+}

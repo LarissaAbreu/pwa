@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
-import { Label } from "./Opcionable/Label";
-import { Group } from "./Opcionable/Group";
-import { Input } from "./Opcionable/Input";
-import { IconWrapper } from "./Opcionable/IconWrapper";
+import { Label } from './Opcionable/Label'
+import { Group } from './Opcionable/Group'
+import { Input } from './Opcionable/Input'
+import { IconWrapper } from './Opcionable/IconWrapper'
 
 export const Checkbox = ({ id, text, ...props }) => {
   return (
@@ -16,5 +16,5 @@ export const Checkbox = ({ id, text, ...props }) => {
         {/* <IconWrapper icon={icons.check} /> */}
       </Label>
     </Group>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import { css } from "../theme";
+import { css } from '../theme'
 
 export const Container = css`
   width: 100%;
@@ -9,4 +9,4 @@ export const Container = css`
     padding-left: 15px;
     padding-right: 15px;
   }
-`;
+`

@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import * as ReactGA from 'react-ga'
+import { connect } from 'react-redux'
 
 import { Button } from '../components/Button'
 
@@ -11,7 +12,7 @@ import * as background from '../statics/images/background.jpg'
 import * as logo from '../statics/images/logo.png'
 import * as heart from '../statics/images/heart.png'
 
-import { styled, css } from '../theme'
+import { styled } from '../theme'
 import { Container } from '../components/Container'
 import { Apple } from '../components/Icons/Apple'
 import { StoreButton } from '../components/StoreButton'
@@ -19,6 +20,7 @@ import { Android } from '../components/Icons/Android'
 import { Facebook } from '../components/Icons/Facebook'
 import { Instagram } from '../components/Icons/Instagram'
 import { SocialButton } from '../components/SocialButton'
+import { doSignInAtProvider } from '../actions/auth'
 
 type Props = DependenciesContainerType
 
@@ -144,82 +146,93 @@ const Details = {
   `
 }
 
-class Landing extends React.Component {
-  componentDidMount() {
-    ReactGA.initialize('UA-129315279-1')
-    ReactGA.pageview(window.location.origin)
-  }
+const Footer = styled.div`
+  background: ${props => props.theme.colors.primary};
+`
 
-  render() {
-    return (
-      <React.Fragment>
-        <Home.Background>
-          <Home.Header>
-            <Home.Logo src={logo} alt="Ondetempico" />
+function Landing(props) {
+  ReactGA.pageview(window.location.origin)
 
-            <Home.Button color="secondary" size="medium">
-              Obter aplicativo
-            </Home.Button>
-          </Home.Header>
+  return (
+    <React.Fragment>
+      <Home.Background>
+        <Home.Header>
+          <Home.Logo src={logo} alt="Ondetempico" />
 
-          <Home.Body>
-            <Home.Title>
-              Vamos ajudar o carrinho, compartilhe e encontre novos picos para o
-              rolê.
-            </Home.Title>
-          </Home.Body>
-        </Home.Background>
+          <Home.Button color="secondary" size="medium">
+            Obter aplicativo
+          </Home.Button>
+        </Home.Header>
 
-        <Explanation.Background>
-          <Explanation.Subtitle>Nosso propósito?</Explanation.Subtitle>
+        <Home.Body>
+          <Home.Title>
+            Vamos ajudar o carrinho, compartilhe e encontre novos picos para o
+            rolê.
+          </Home.Title>
+        </Home.Body>
+      </Home.Background>
 
-          <Explanation.Text>
-            Com o Ondetempico, que é o nosso app, tanto você como seus amigos
-            podem compartilhar a localização de um pico daora, desde uma pista
-            ou até aquele corrimão da rua.
-          </Explanation.Text>
+      <Explanation.Background>
+        <Explanation.Subtitle>Nosso propósito?</Explanation.Subtitle>
 
-          <Explanation.Text>
-            Tem mais, o app é totalmente sem fins lucrativos, queremos apenas
-            fortalecer o skateboard
-            <Explanation.Heart src={heart} />
-          </Explanation.Text>
+        <Explanation.Text>
+          Com o Ondetempico, que é o nosso app, tanto você como seus amigos
+          podem compartilhar a localização de um pico daora, desde uma pista ou
+          até aquele corrimão da rua.
+        </Explanation.Text>
 
-          <Explanation.Text>
-            Além dos picos, você fica sabendo aonde encontra lojas especilizadas
-            no carrinho, quando e onde ocorre os campeonatos da cena. Você pode
-            baixar o app descendo um pouco mais abaixo.
-          </Explanation.Text>
-        </Explanation.Background>
+        <Explanation.Text>
+          Tem mais, o app é totalmente sem fins lucrativos, queremos apenas
+          fortalecer o skateboard
+          <Explanation.Heart src={heart} />
+        </Explanation.Text>
 
-        <Details.Background>
-          <Details.Subtitle>Em breve disponível</Details.Subtitle>
+        <Explanation.Text>
+          Além dos picos, você fica sabendo aonde encontra lojas especilizadas
+          no carrinho, quando e onde ocorre os campeonatos da cena. Você pode
+          baixar o app descendo um pouco mais abaixo.
+        </Explanation.Text>
+      </Explanation.Background>
 
-          <Details.Stores>
-            <StoreButton title="Play">
-              <Android color="secondary" />
-            </StoreButton>
+      <Details.Background>
+        <Details.Subtitle>Em breve disponível</Details.Subtitle>
 
-            <StoreButton title="App">
-              <Apple color="secondary" />
-            </StoreButton>
-          </Details.Stores>
+        <Details.Stores>
+          <StoreButton title="Play">
+            <Android color="secondary" />
+          </StoreButton>
 
-          <Details.Follow>Aproveite, siga nossas redes</Details.Follow>
+          <StoreButton title="App">
+            <Apple color="secondary" />
+          </StoreButton>
+        </Details.Stores>
 
-          <Details.Networks>
-            <SocialButton address="https://facebook.com/ondetempico">
-              <Facebook color="secondary" />
-            </SocialButton>
+        <Details.Follow>Aproveite, siga nossas redes</Details.Follow>
 
-            <SocialButton address="https://instagram.com/ondetempico">
-              <Instagram color="secondary" />
-            </SocialButton>
-          </Details.Networks>
-        </Details.Background>
-      </React.Fragment>
-    )
-  }
+        <Details.Networks>
+          <SocialButton address="https://facebook.com/ondetempico">
+            <Facebook color="secondary" />
+          </SocialButton>
+
+          <SocialButton address="https://instagram.com/ondetempico">
+            <Instagram color="secondary" />
+          </SocialButton>
+        </Details.Networks>
+      </Details.Background>
+
+      <Footer>
+        <a onClick={props.doSignIn}>Entrar</a>
+        <p>Projeto Ondetempico, sem fins lucrativos.</p>
+      </Footer>
+    </React.Fragment>
+  )
 }
 
-export default Landing
+const mapActionsToProps = dispatch => ({
+  doSignIn: () => dispatch(doSignInAtProvider())
+})
+
+export default connect(
+  null,
+  mapActionsToProps
+)(Landing)

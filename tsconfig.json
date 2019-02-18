@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "pretty": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,

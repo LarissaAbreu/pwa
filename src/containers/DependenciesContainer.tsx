@@ -4,10 +4,8 @@ import { ComponentType } from 'react'
 
 type DependenciesProps<P> = RouteComponentProps<P>
 
-const DependenciesContainer = <P extends object>(
+export const DependenciesContainer = <P extends object>(
   Component: ComponentType<P>
 ) => {
   return compose<P, DependenciesProps<P>>(withRouter)(Component)
 }
-
-export default DependenciesContainer

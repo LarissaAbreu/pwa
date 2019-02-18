@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { Button } from './Button'
-import { styled } from '../theme';
+import { styled } from '../theme'
 
 const Description = styled.p`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.secondary}
   margin-bottom: 20px;
 `
 

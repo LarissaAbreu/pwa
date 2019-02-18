@@ -1,20 +1,19 @@
 import * as React from 'react'
+import * as ReactGA from 'react-ga'
+
 import { compose } from 'recompose'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 import { ThemeProvider, theme } from './theme'
 
 import Landing from './pages/Landing'
-import Preferences from './pages/Preferences'
 
-import NewSpot from './pages/spots/new/NewSpot'
-import AnalyzeSpots from './pages/spots/AnalyzeSpots'
-import ListSpots from './pages/spots/ListSpots'
+import { AnalyzeSpots } from './pages/spots/AnalyzeSpots'
 
 import Main from './containers/Main'
-import AuthenticationContainer from './containers/AuthenticationContainer'
-import DependenciesContainer from './containers/DependenciesContainer'
-import RoleContainer from './containers/RoleContainer'
+import { AuthenticationContainer } from './containers/AuthenticationContainer'
+import { DependenciesContainer } from './containers/DependenciesContainer'
+import { RoleContainer } from './containers/RoleContainer'
 
 const Composing = Component =>
   compose(
@@ -30,10 +29,7 @@ const AnalyzeSpotsWithContainers = compose(
   Composing
 )(AnalyzeSpots)
 
-const NewSpotWithContainers = Composing(NewSpot)
-const ListSpotsWithContainers = Composing(ListSpots)
-
-const SettingsAuthenticated = AuthenticationContainer(Preferences)
+ReactGA.initialize('UA-129315279-1')
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -42,10 +38,7 @@ const App = () => (
         <Route exact={true} path="/" component={LandingWithDependencies} />
 
         <MainWithDependencies>
-          <Route path="/settings" component={SettingsAuthenticated} />
-          <Route path="/spots/list" component={ListSpotsWithContainers} />
-          <Route path="/spots/new" component={NewSpotWithContainers} />
-          <Route path="/spots/analyze" component={AnalyzeSpotsWithContainers} />
+          <Route path="/analyze" component={AnalyzeSpotsWithContainers} />
         </MainWithDependencies>
       </Switch>
     </BrowserRouter>

@@ -2,13 +2,13 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import { DependenciesContainerType } from '../types'
-import DependenciesContainer from './DependenciesContainer'
+import { DependenciesContainer } from './DependenciesContainer'
 import { compose } from 'recompose'
 
 type State = DependenciesContainerType
 type Props = State
 
-const AuthenticationContainer = Component => {
+export const AuthenticationContainer = Component => {
   class Authentication extends React.Component<Props, State> {
     componentDidMount(): void {
       const { auth, history } = this.props
@@ -32,5 +32,3 @@ const AuthenticationContainer = Component => {
     DependenciesContainer
   )(Authentication)
 }
-
-export default AuthenticationContainer

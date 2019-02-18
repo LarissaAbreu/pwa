@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled } from '../theme';
+import { styled } from '../theme'
 
 const Group = styled.div`
   width: 100%;
