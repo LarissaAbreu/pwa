@@ -10,23 +10,23 @@ import Landing from './pages/Landing'
 
 import { AnalyzeSpots } from './pages/spots/AnalyzeSpots'
 
-import Main from './containers/Main'
-import { AuthenticationContainer } from './containers/AuthenticationContainer'
-import { DependenciesContainer } from './containers/DependenciesContainer'
-import { RoleContainer } from './containers/RoleContainer'
+import Main from './containers/Content'
+import { Authentication } from './containers/Authentication'
+import { withDependencies } from './containers/Dependencies'
+import { Role } from './containers/Role'
 
-const Composing = Component =>
+const Composed = Component =>
   compose(
-    AuthenticationContainer,
-    DependenciesContainer
+    Authentication,
+    withDependencies
   )(Component)
 
-const MainWithDependencies = Composing(Main)
-const LandingWithDependencies = DependenciesContainer(Landing)
+const MainWithDependencies = Composed(Main)
+const LandingWithDependencies = withDependencies(Landing)
 
 const AnalyzeSpotsWithContainers = compose(
-  RoleContainer,
-  Composing
+  Role,
+  Composed
 )(AnalyzeSpots)
 
 ReactGA.initialize('UA-129315279-1')

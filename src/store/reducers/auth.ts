@@ -1,4 +1,4 @@
-import { ActionType } from '../ActionType'
+import { Constants } from '../constants'
 
 export type AuthState = {
   isAuthenticated: boolean
@@ -19,7 +19,7 @@ export const auth = (
   { type, payload }
 ): AuthState => {
   switch (type) {
-    case ActionType.SIGN_IN_SUCCESS:
+    case Constants.SIGN_IN_SUCCESS:
       const {
         displayName,
         isAdmin,
@@ -39,7 +39,7 @@ export const auth = (
         photoURL
       }
 
-    case ActionType.SIGN_OUT_SUCCESS:
+    case Constants.SIGN_OUT_SUCCESS:
       return initialState
 
     default:

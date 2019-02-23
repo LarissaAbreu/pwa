@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-import { DependenciesContainerType } from '../types'
+import { Dependencies } from '../types'
 
-type State = DependenciesContainerType
+type State = Dependencies
 type Props = State
 
-export const RoleContainer = (
+export const Role = (
   Component: React.ComponentType<Props>
 ): React.ComponentClass<Props> => {
   class Role extends React.Component<Props, State> {
@@ -14,7 +14,7 @@ export const RoleContainer = (
       const { auth, history } = this.props
 
       if (!auth.isAdmin) {
-        history.push('/spots/list')
+        history.push('/')
       }
     }
 

@@ -6,8 +6,8 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { styled } from '../theme'
 
-import { doSignOut } from '../actions/auth'
-import { DependenciesContainerType } from '../types'
+import { doSignOut } from '../store/actions/auth'
+import { Dependencies } from '../types'
 
 const Header = styled.div`
   text-align: center;
@@ -40,7 +40,7 @@ const Role = styled.div`
   color: ${props => props.theme.colors.primary};
 `
 
-const LinkWrapper = styled(Link)`
+const Linkable = styled(Link)`
   font-size: 14px;
   color: ${props => props.theme.colors.secondary};
   display: block;
@@ -54,23 +54,14 @@ type Actions = {
   signOutWhenClicked
 }
 
-type Props = Actions &
-  DependenciesContainerType & {
-    toggleMenu: () => void
-  }
+interface Props extends Actions, Dependencies {
+  toggleMenu: () => void
+}
 
 export type State = Props
 export type Dispatch = ThunkDispatch<State, undefined, Action>
 
-function Menu(props) {
-  const signOutWhenClicked = (): void => {
-    const { signOutWhenClicked, history } = props
-
-    signOutWhenClicked()
-  }
-
-  const { toggleMenu, auth } = props
-
+function Menu({ toggleMenu, auth, signOutWhenClicked, history }) {
   return (
     <Wrapper>
       <Header>
@@ -79,22 +70,22 @@ function Menu(props) {
         <Role>Administrador</Role>
       </Header>
 
-      <LinkWrapper to="/spots/analyze" onClick={toggleMenu}>
+      <Linkable to="/analyze" onClick={toggleMenu}>
         Analisar pico
-      </LinkWrapper>
+      </Linkable>
 
-      <LinkWrapper to="/" onClick={signOutWhenClicked}>
+      <Linkable to="/" onClick={signOutWhenClicked}>
         Sair
-      </LinkWrapper>
+      </Linkable>
     </Wrapper>
   )
 }
 
 const mapActionsToProps = (dispatch: Dispatch): Actions => ({
-  signOutWhenClicked: dispatch(doSignOut())
+  signOutWhenClicked: () => dispatch(doSignOut())
 })
 
-const mapStateToProps = ({ auth }: DependenciesContainerType) => ({
+const mapStateToProps = ({ auth }: Dependencies) => ({
   auth
 })
 

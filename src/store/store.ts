@@ -1,22 +1,22 @@
 import { createStore, applyMiddleware } from 'redux'
-
 import thunk from 'redux-thunk'
-
 import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-import localforage from 'localforage'
+import reducers from './reducers'
 
-import reducers from './reducers/index'
 const middlewares = applyMiddleware(thunk)
 
 const persistConfig = {
   key: 'root',
-  storage: localforage
+  storage,
+  debug: true
 }
 
 const combinedReducers = persistReducer(persistConfig, reducers)
 
-const store = createStore(combinedReducers, middlewares)
+const store = createStore(combinedReducers, composeWithDevTools(middlewares))
 
 const persistedStore = persistStore(store)
 
