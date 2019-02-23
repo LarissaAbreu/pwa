@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 
 import { styled } from '../theme'
 
-import { DependenciesContainerType } from '../types'
+import { Dependencies } from '../types'
+import Menu from '../components/Menu'
 
 const MainWrapper = styled.div`
   display: flex;
 `
 
-const Content = styled.div`
+const Container = styled.div`
   width: 100%;
 `
 
@@ -30,34 +31,31 @@ const Bar = styled.div`
 //   font-size: rem(24px);
 // `
 
-interface Props extends DependenciesContainerType {
+interface Props extends Dependencies {
   children: ReactNode
 }
 
-function Main(props: Props) {
+function Content({ children, history }: Props) {
   const [isMenuShowing, setShowMenu] = useState(true)
 
   const toggleMenu = () => setShowMenu(!isMenuShowing)
 
-  const { history } = props
+  console.log(isMenuShowing)
 
   return (
     <MainWrapper>
-      {/* {isMenuShowing && (
-          <Menu toggleMenu={toggleMenu} history={history} />
-        )} */}
+      {isMenuShowing && <Menu toggleMenu={toggleMenu} history={history} />}
 
-      <Content>
+      <Container>
         <Bar>
           {/* <IconWrapper icon={icons.menu} onClick={toggleMenu} /> */}
         </Bar>
-
-        {props.children}
-      </Content>
+        {children}
+      </Container>
     </MainWrapper>
   )
 }
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps)(Content)

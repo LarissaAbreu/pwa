@@ -1,14 +1,14 @@
 import { Dispatch, Action } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { authRef, provider, databaseRef } from '../firebase'
+import { authRef, provider, databaseRef } from '../../firebase'
 
-import { ActionType } from '../ActionType'
+import { Constants } from '../constants'
 import { Actionable } from './types'
-import { State as LandingState } from '../pages/Landing'
-import { State as MenuState } from '../pages/Menu'
+import { State as LandingState } from '../../pages/Landing'
+import { State as MenuState } from '../../components/Menu'
 import { AuthState } from '../reducers/auth'
-import { FetchedUser } from '../types'
-import { Roles } from '../Roles'
+import { FetchedUser } from '../../types'
+import { Roles } from '../../Roles'
 
 export type SignInError = ''
 export type SignIn = AuthState | SignInError
@@ -51,7 +51,6 @@ export const doSignInAtProvider = (): SignInResult<void> => {
 
         dispatch(signInSuccess(user))
       })
-      .catch(result => console.log(result))
   }
 }
 
@@ -65,19 +64,19 @@ export const doSignOut = (): SignOutResult<void> => {
 }
 
 const signInError = (payload): Actionable<SignInError> => ({
-  type: ActionType.SIGN_IN_ERROR,
+  type: Constants.SIGN_IN_ERROR,
   payload
 })
 
 const signInSuccess = (payload: AuthState): Actionable<AuthState> => ({
-  type: ActionType.SIGN_IN_SUCCESS,
+  type: Constants.SIGN_IN_SUCCESS,
   payload
 })
 
 const signOutSuccess = (): Action => ({
-  type: ActionType.SIGN_OUT_SUCCESS
+  type: Constants.SIGN_OUT_SUCCESS
 })
 
 const signOutError = (): Action => ({
-  type: ActionType.SIGN_OUT_ERROR
+  type: Constants.SIGN_OUT_ERROR
 })

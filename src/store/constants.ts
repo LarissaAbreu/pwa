@@ -1,4 +1,4 @@
-export enum ActionType {
+export enum Constants {
   SIGN_IN_ERROR = 'SIGN_IN_ERROR',
   SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS',
   SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS',

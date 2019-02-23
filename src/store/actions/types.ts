@@ -1,7 +1,7 @@
 import * as Redux from 'redux'
-import { ActionType } from '../ActionType'
+import { Constants } from '../constants'
 
 export interface Actionable<P> extends Redux.Action {
-  type: ActionType
+  type: Constants
   payload: P
 }

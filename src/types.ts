@@ -1,4 +1,4 @@
-import { AuthState } from './reducers/auth'
+import { AuthState } from './store/reducers/auth'
 import { RouteComponentProps } from 'react-router'
 
 export type AuthProps = {
@@ -19,4 +19,4 @@ export type FetchedUser = {
   uid: string
 }
 
-export type DependenciesContainerType = RouteComponentProps & AuthProps
+export type Dependencies = RouteComponentProps & AuthProps

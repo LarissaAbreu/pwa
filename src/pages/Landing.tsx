@@ -1,12 +1,12 @@
 /// <reference path='../types.d.ts'/>
 
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import * as ReactGA from 'react-ga'
 import { connect } from 'react-redux'
 
 import { Button } from '../components/Button'
 
-import { DependenciesContainerType } from '../types'
+import { Dependencies } from '../types'
 
 import * as background from '../statics/images/background.jpg'
 import * as logo from '../statics/images/logo.png'
@@ -20,9 +20,13 @@ import { Android } from '../components/Icons/Android'
 import { Facebook } from '../components/Icons/Facebook'
 import { Instagram } from '../components/Icons/Instagram'
 import { SocialButton } from '../components/SocialButton'
-import { doSignInAtProvider } from '../actions/auth'
+import { doSignInAtProvider } from '../store/actions/auth'
 
-type Props = DependenciesContainerType
+type Actions = {
+  doSignIn
+}
+
+interface Props extends Dependencies, Actions {}
 
 export type State = Props
 
@@ -150,11 +154,19 @@ const Footer = styled.div`
   background: ${props => props.theme.colors.primary};
 `
 
-function Landing(props) {
+function Landing({ history, auth, doSignIn }) {
+  const { isAuthenticated, isAdmin } = auth
+
   ReactGA.pageview(window.location.origin)
 
+  useEffect(() => {
+    if (isAuthenticated && isAdmin) {
+      history.push('/analyze')
+    }
+  })
+
   return (
-    <React.Fragment>
+    <>
       <Home.Background>
         <Home.Header>
           <Home.Logo src={logo} alt="Ondetempico" />
@@ -221,18 +233,20 @@ function Landing(props) {
       </Details.Background>
 
       <Footer>
-        <a onClick={props.doSignIn}>Entrar</a>
+        <a onClick={doSignIn}>Entrar</a>
         <p>Projeto Ondetempico, sem fins lucrativos.</p>
       </Footer>
-    </React.Fragment>
+    </>
   )
 }
+
+const mapStateToProps = state => state
 
 const mapActionsToProps = dispatch => ({
   doSignIn: () => dispatch(doSignInAtProvider())
 })
 
 export default connect(
-  null,
+  mapStateToProps,
   mapActionsToProps
 )(Landing)

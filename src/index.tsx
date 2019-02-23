@@ -3,12 +3,9 @@ import * as ReactDOM from 'react-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 
-import registerServiceWorker from './registerServiceWorker'
 import App from './App'
-
-import { store, persistedStore } from './store'
-
-
+import registerServiceWorker from './registerServiceWorker'
+import { store, persistedStore } from './store/store'
 import { createGlobalStyle } from './theme'
 
 const GlobalStyle = createGlobalStyle`
