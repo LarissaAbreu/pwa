@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ondetempico/pwa.svg?branch=master)](https://travis-ci.org/ondetempico/pwa)
+
 # Ondetempico
 > Em breve, encontre novos picos para andar de skate.
 
