@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/ondetempico/pwa.svg?branch=master)](https://travis-ci.org/ondetempico/pwa)
+[![Gitter](https://badges.gitter.im/ondetempico/Lobby.svg)](https://gitter.im/ondetempico/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Ondetempico
 > Em breve, encontre novos picos para andar de skate.
