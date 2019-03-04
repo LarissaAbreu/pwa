@@ -8,7 +8,7 @@ import { ThemeProvider, theme } from './theme'
 
 import Landing from './pages/Landing'
 
-import { AnalyzeSpots } from './pages/spots/AnalyzeSpots'
+import { Analysis } from './pages/spots/Analysis'
 
 import Main from './containers/Content'
 import { Authentication } from './containers/Authentication'
@@ -24,10 +24,10 @@ const Composed = Component =>
 const MainWithDependencies = Composed(Main)
 const LandingWithDependencies = withDependencies(Landing)
 
-const AnalyzeSpotsWithContainers = compose(
+const AnalyzeWithContainers = compose(
   Role,
   Composed
-)(AnalyzeSpots)
+)(Analysis)
 
 ReactGA.initialize('UA-129315279-1')
 
@@ -38,7 +38,7 @@ const App = () => (
         <Route exact={true} path="/" component={LandingWithDependencies} />
 
         <MainWithDependencies>
-          <Route path="/analyze" component={AnalyzeSpotsWithContainers} />
+          <Route path="/analysis" component={AnalyzeWithContainers} />
         </MainWithDependencies>
       </Switch>
     </BrowserRouter>

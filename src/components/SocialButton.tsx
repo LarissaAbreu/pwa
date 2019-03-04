@@ -2,7 +2,7 @@ import * as React from 'react'
 import { styled } from '../theme'
 
 const Button = styled.a`
-  background: ${props => props.theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   width: 35px;
   height: 35px;

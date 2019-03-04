@@ -5,8 +5,8 @@ import { styled } from '../theme'
 
 const Button = styled.div`
   cursor: not-allowed;
-  color: ${props => props.theme.colors.secondary};
-  background: ${props => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 50px;
   display: flex;
   align-items: center;

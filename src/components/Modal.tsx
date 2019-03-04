@@ -1,12 +1,7 @@
-import * as React from 'react'
+import React, { ReactNode, memo } from 'react'
 
 import { Button } from './Button'
 import { styled } from '../theme'
-
-const Description = styled.p`
-  color: ${props => props.theme.colors.secondary}
-  margin-bottom: 20px;
-`
 
 const Overlay = styled.div`
   width: 100%;
@@ -19,10 +14,11 @@ const Overlay = styled.div`
   justify-content: center;
   flex-direction: column;
   position: absolute;
+  top: 50px;
 `
 
-const Wrapper = styled.div`
-  background: ${props => props.theme.colors.primary};
+const Container = styled.div`
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 5px;
   padding: 30px;
   text-align: center;
@@ -38,23 +34,25 @@ const ConfirmButton = styled(Button)`
 
 type Props = {
   buttonWasClicked: (event: React.MouseEvent) => void
-  description: string
+  children: ReactNode
 }
 
-export const Modal: React.SFC<Props> = ({
-  buttonWasClicked,
-  description,
-  ...props
-}: Props) => {
-  return (
-    <Overlay {...props}>
-      <Wrapper>
-        <Description>{description}</Description>
+export const Modal: React.FC<Props> = memo(
+  ({ buttonWasClicked, children, ...props }: Props) => {
+    return (
+      <Overlay {...props}>
+        <Container>
+          {children}
 
-        <ConfirmButton onClick={buttonWasClicked} size="medium" color="primary">
-          Ok
-        </ConfirmButton>
-      </Wrapper>
-    </Overlay>
-  )
-}
+          <ConfirmButton
+            onClick={buttonWasClicked}
+            size="medium"
+            color="primary"
+          >
+            Ok 👌🏼
+          </ConfirmButton>
+        </Container>
+      </Overlay>
+    )
+  }
+)

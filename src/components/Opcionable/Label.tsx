@@ -5,9 +5,9 @@ export const Label = styled.label`
   display: block;
   text-align: left;
   position: relative;
-  color: ${props => props.theme.colors.third};
+  color: ${({theme}) =>theme.colors.third};
   cursor: pointer;
   font-size: 14px;
-  border-bottom: 1px solid ${props => props.theme.colors.fourth};
+  border-bottom: 1px solid ${({theme}) =>theme.colors.fourth};
   padding: 10px 5px;
 `;

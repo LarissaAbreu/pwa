@@ -17,11 +17,11 @@ const Field = styled.input`
   border-radius: 0;
   height: 40px;
   box-shadow: none;
-  border-bottom: 1px solid ${props => props.theme.colors.fourth};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.fourth};
   outline: none;
   cursor: text;
   background: transparent;
-  color: ${props => props.theme.colors.third};
+  color: ${({ theme }) => theme.colors.third};
   transition: 0.4s ease;
   font-size: 14px;
 
@@ -36,7 +36,7 @@ const Label = styled.label`
   position: absolute;
   left: 5px;
   top: 12px;
-  color: ${props => props.theme.colors.third};
+  color: ${({ theme }) => theme.colors.third};
   pointer-events: none;
   transition: 0.2s ease-out;
   font-size: 14px;

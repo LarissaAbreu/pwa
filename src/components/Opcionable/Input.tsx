@@ -4,10 +4,10 @@ export const Input = styled.input`
   display: none;
 
   &:checked ~ label {
-    color: ${props => props.theme.colors.third};
+    color: ${({theme}) =>theme.colors.third};
   }
 
   &:checked ~ label span {
-    color: ${props => props.theme.colors.third};
+    color: ${({theme}) =>theme.colors.third};
   }
 `;

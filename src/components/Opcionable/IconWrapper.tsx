@@ -6,5 +6,5 @@ export const IconWrapper = styled(Icon)`
   transform: translateY(-50%);
   position: absolute;
   right: 10px;
-  color: ${props => props.theme.colors.primary};
+  color: ${({theme}) =>theme.colors.primary};
 `;

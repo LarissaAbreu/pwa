@@ -32,6 +32,8 @@ export const Button = styled.button`
   border: none;
   border-radius: 50px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   background: ${props => props.theme.combinations[props.color].background};
   color: ${props => props.theme.combinations[props.color].color};

@@ -66,7 +66,7 @@ const Home = {
     padding-top: 110px;
     max-width: 800px;
     font-weight: 700;
-    color: ${props => props.theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
     font-size: 50px;
     letter-spacing: 1px;
 
@@ -90,12 +90,12 @@ const Explanation = {
   `,
   Subtitle: styled.h2`
     font-size: 50px;
-    color: ${props => props.theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.secondary};
     padding-bottom: 70px;
   `,
 
   Text: styled.p`
-    color: ${props => props.theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.secondary};
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 2px;
@@ -113,7 +113,7 @@ const Details = {
   Background: styled.div`
     width: 100%;
     min-height: 100vh;
-    background: ${props => props.theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.secondary};
     text-align: center;
     padding-top: 120px;
     padding-bottom: 40px;
@@ -121,7 +121,7 @@ const Details = {
 
   Subtitle: styled.h2`
     font-size: 50px;
-    color: ${props => props.theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
     padding-bottom: 70px;
   `,
 
@@ -135,7 +135,7 @@ const Details = {
 
   Follow: styled.p`
     font-size: 16px;
-    color: ${props => props.theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
     letter-spacing: 2px;
     margin: 150px auto 20px auto;
   `,
@@ -151,7 +151,7 @@ const Details = {
 }
 
 const Footer = styled.div`
-  background: ${props => props.theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
 `
 
 function Landing({ history, auth, doSignIn }) {
@@ -161,7 +161,7 @@ function Landing({ history, auth, doSignIn }) {
 
   useEffect(() => {
     if (isAuthenticated && isAdmin) {
-      history.push('/analyze')
+      history.push('/analysis')
     }
   })
 

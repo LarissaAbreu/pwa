@@ -1,58 +1,62 @@
 import React, { useState, ReactNode } from 'react'
+import { PoseGroup } from 'react-pose'
 import { connect } from 'react-redux'
 
 import { styled } from '../theme'
 
-import { Dependencies } from '../types'
-import Menu from '../components/Menu'
+import { Animation } from '../components/Animation'
 
-const MainWrapper = styled.div`
+import { Dependencies } from '../types'
+import Sidebar from '../components/Sidebar'
+import { Hamburguer } from '../components/Icons/Hamburguer'
+
+const Container = styled.div`
   display: flex;
 `
 
-const Container = styled.div`
+const Resizable = styled(Animation)`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100vh;
 `
 
-const Bar = styled.div`
+const Navigation = styled.div`
   width: 100%;
   height: 50px;
-  background: ${props => props.theme.colors.secondary};
+  background: ${({ theme }) => theme.colors.secondary};
   position: relative;
 `
-
-// const IconWrapper = styled(Icon)`
-//   color: ${props => props.theme.colors.primary};
-//   position: absolute;
-//   left: 15px;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   cursor: pointer;
-//   font-size: rem(24px);
-// `
 
 interface Props extends Dependencies {
   children: ReactNode
 }
 
 function Content({ children, history }: Props) {
-  const [isMenuShowing, setShowMenu] = useState(true)
+  const [isShowing, setShowing] = useState(true)
 
-  const toggleMenu = () => setShowMenu(!isMenuShowing)
-
-  console.log(isMenuShowing)
+  const toggleSidebar = () => setShowing(!isShowing)
 
   return (
-    <MainWrapper>
-      {isMenuShowing && <Menu toggleMenu={toggleMenu} history={history} />}
+    <Container>
+      <PoseGroup>
+        {isShowing && (
+          <Sidebar
+            key="sidebar"
+            toggleSidebar={toggleSidebar}
+            history={history}
+          />
+        )}
 
-      <Container>
-        <Bar>
-          {/* <IconWrapper icon={icons.menu} onClick={toggleMenu} /> */}
-        </Bar>
-        {children}
-      </Container>
-    </MainWrapper>
+        <Resizable key="resizable">
+          <Navigation>
+            <Hamburguer color="primary" onClick={toggleSidebar} />
+          </Navigation>
+
+          {children}
+        </Resizable>
+      </PoseGroup>
+    </Container>
   )
 }
 
