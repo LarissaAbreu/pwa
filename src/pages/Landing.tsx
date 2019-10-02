@@ -196,7 +196,7 @@ function Landing({ history, auth, doSignIn }) {
         <Explanation.Text>
           Tem mais, o app é totalmente sem fins lucrativos, queremos apenas
           fortalecer o skateboard
-          <Explanation.Heart src={heart} />
+          <Explanation.Heart src={heart} alt="Ícone de coração" />
         </Explanation.Text>
 
         <Explanation.Text>
@@ -222,11 +222,11 @@ function Landing({ history, auth, doSignIn }) {
         <Details.Follow>Aproveite, siga nossas redes</Details.Follow>
 
         <Details.Networks>
-          <SocialButton address="https://facebook.com/ondetempico">
+          <SocialButton address="https://facebook.com/ondetempico" title="Acompanhe-nos no Facebook">
             <Facebook color="secondary" />
           </SocialButton>
 
-          <SocialButton address="https://instagram.com/ondetempico">
+          <SocialButton address="https://instagram.com/ondetempico" title="Siga-nos no Instagram">
             <Instagram color="secondary" />
           </SocialButton>
         </Details.Networks>

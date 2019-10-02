@@ -18,13 +18,15 @@ const Button = styled.a`
 type Props = {
   address: string
   children: React.ReactNode
+  title: string
 }
 
 export const SocialButton: React.SFC<Props> = ({
   address,
-  children
+  children,
+  title
 }: Props) => (
-  <Button href={address} rel="noopener noreferrer" target="_blank">
+  <Button href={address} rel="noopener noreferrer" target="_blank" aria-label={title}>
     {children}
   </Button>
 )
